@@ -1,0 +1,56 @@
+/* Recepción 24 h — widget de demo (100% cliente) */
+.r24-demo-banner{position:fixed;left:12px;bottom:12px;z-index:9998;background:#4a5d7a;color:#fff;font:600 12px/1.3 Yantramanav,system-ui,sans-serif;padding:7px 11px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:.93;pointer-events:none;max-width:calc(100vw - 110px)}
+.r24-launch{position:fixed;right:20px;bottom:20px;z-index:9999;display:flex;align-items:center;gap:9px;border:0;cursor:pointer;background:linear-gradient(135deg,#2ca8dd,#56bde6);color:#fff;font:700 15px/1 Yantramanav,system-ui,sans-serif;padding:14px 18px 14px 14px;border-radius:999px;box-shadow:0 10px 26px rgba(44,168,221,.4)}
+.r24-launch svg{width:24px;height:24px;flex:none}
+.r24-launch .r24-dot{width:9px;height:9px;border-radius:50%;background:#3ee07a;box-shadow:0 0 0 3px rgba(62,224,122,.25)}
+.r24-launch.r24-hide{display:none}
+.r24-panel{position:fixed;right:20px;bottom:20px;z-index:10000;width:380px;max-width:calc(100vw - 24px);height:600px;max-height:calc(100vh - 40px);display:none;flex-direction:column;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(6,35,74,.35);font:15px/1.45 Yantramanav,system-ui,sans-serif;color:#0d2a40}
+.r24-panel.r24-open{display:flex}
+@media(max-width:520px){.r24-panel{right:0;bottom:0;width:100vw;max-width:100vw;height:100%;max-height:100%;border-radius:0}.r24-launch{right:14px;bottom:14px}}
+.r24-head{background:linear-gradient(135deg,#4a5d7a,#2ca8dd);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.r24-av{width:40px;height:40px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden}
+.r24-av img{width:32px;height:auto}
+.r24-ht{flex:1;min-width:0}.r24-ht b{display:block;font-size:16px}.r24-ht small{opacity:.85;font-size:12.5px}
+.r24-x{background:rgba(255,255,255,.15);border:0;color:#fff;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:20px;line-height:1}
+.r24-status{font-size:12.5px;padding:7px 14px;background:#eef5fd;color:#0a3263;border-bottom:1px solid #dde8f5}
+.r24-status.r24-closed{background:#fff6e6;color:#7a4b00;border-color:#f5e2bd}
+.r24-body{flex:1;overflow-y:auto;padding:14px;background:#f4f8fc;display:flex;flex-direction:column;gap:8px}
+.r24-msg{max-width:86%;padding:10px 13px;border-radius:16px;white-space:pre-line;word-wrap:break-word}
+.r24-bot{background:#fff;border:1px solid #e1eaf5;border-bottom-left-radius:5px;align-self:flex-start}
+.r24-user{background:#2ca8dd;color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
+.r24-msg a{color:#2ca8dd;font-weight:600}.r24-user a{color:#fff}
+.r24-sum{background:#fff;border:1px solid #bfe3cc;border-left:4px solid #25d366}
+.r24-chips{display:flex;flex-wrap:wrap;gap:6px;align-self:flex-start;max-width:100%}
+.r24-chip{border:1px solid #2ca8dd;background:#fff;color:#2ca8dd;border-radius:999px;padding:7px 12px;font:600 13.5px/1.1 Yantramanav,system-ui,sans-serif;cursor:pointer;text-decoration:none}
+.r24-chip:hover{background:#2ca8dd;color:#fff}
+.r24-chip.r24-wa{border-color:#25d366;color:#128c4a}.r24-chip.r24-wa:hover{background:#25d366;color:#fff}
+.r24-typing{align-self:flex-start;background:#fff;border:1px solid #e1eaf5;border-radius:16px;padding:10px 14px;color:#6e87a5;font-size:13px}
+.r24-foot{display:flex;gap:8px;padding:10px;border-top:1px solid #e1eaf5;background:#fff}
+.r24-in{flex:1;border:1px solid #cddbec;border-radius:999px;padding:11px 15px;font:15px Yantramanav,system-ui,sans-serif;outline:none;min-width:0}
+.r24-in:focus{border-color:#2ca8dd}
+.r24-send{border:0;background:#2ca8dd;color:#fff;border-radius:999px;padding:0 16px;font:700 14px Yantramanav,system-ui,sans-serif;cursor:pointer}
+.r24-legal{font-size:11px;color:#6e87a5;text-align:center;padding:0 10px 8px;background:#fff}
+/* Clínica Dental Freitas: blindaje frente al tema Denticare + colores de la marca (#2ca8dd azul Freitas, #4a5d7a pizarra) */
+.r24-panel button.r24-send{background:#2ca8dd!important;color:#fff!important;border:0!important;border-radius:999px!important;padding:0 16px!important;font:700 14px system-ui,sans-serif!important;text-transform:none!important;letter-spacing:0!important;min-height:40px;line-height:1!important;box-shadow:none!important}
+.r24-panel button.r24-x{background:rgba(255,255,255,.18)!important;color:#fff!important;padding:0!important;border:0!important;width:34px!important;height:34px!important;font-size:20px!important;line-height:1!important}
+.r24-panel button.r24-chip{background:#fff!important;color:#2ca8dd!important;border:1px solid #2ca8dd!important;padding:7px 12px!important;font:600 13.5px/1.1 system-ui,sans-serif!important;text-transform:none!important;letter-spacing:0!important;box-shadow:none!important}
+.r24-panel button.r24-chip:hover{background:#2ca8dd!important;color:#fff!important}
+.r24-panel a.r24-chip{border-color:#2ca8dd;color:#2ca8dd}.r24-panel a.r24-chip:hover{background:#2ca8dd;color:#fff}
+.r24-panel input.r24-in{border:1px solid #c4dcef!important;border-radius:999px!important;padding:11px 15px!important;background:#fff!important;color:#0d2a40!important;box-shadow:none!important}
+button.r24-launch{background:linear-gradient(135deg,#2ca8dd,#56bde6)!important;color:#fff!important;border:0!important;border-radius:999px!important;padding:14px 18px 14px 14px!important;text-transform:none!important;box-shadow:0 10px 26px rgba(44,168,221,.4)!important}
+.r24-head{background:linear-gradient(135deg,#4a5d7a,#2ca8dd)!important}
+.r24-user{background:#2ca8dd!important}.r24-msg a{color:#2ca8dd}.r24-user a{color:#fff}
+.r24-demo-banner{background:#4a5d7a}
+.r24-av img{width:30px;height:30px;object-fit:contain}
+a.r24-cta{background:#fff!important;color:#2ca8dd!important;border:2px solid #2ca8dd!important;cursor:pointer}
+a.r24-cta:hover{background:#2ca8dd!important;color:#fff!important}
+@media(max-width:1000px){a.r24-cta{display:none!important}}
+
+/* R24-BRIEF-1018: avatar humano */
+.r24-av{background:#e6f1fb!important;padding:0!important}
+.r24-av img.r24-face{width:100%!important;height:100%!important;object-fit:cover!important;border-radius:50%}
+.r24-launch img.r24-face{width:36px!important;height:36px!important;border-radius:50%;background:#fff;flex:none;margin:-8px 0 -8px -6px;box-shadow:0 0 0 2px rgba(255,255,255,.85)}
+.r24-online{font-weight:600;font-size:11px;color:#3ee07a;margin-left:4px;white-space:nowrap}
+/* Freitas: CTA "Pedir cita online" en la barra del menú (escritorio) */
+.topBarInMenuCell a.r24-cta{display:inline-flex!important;align-items:center!important;height:auto!important;min-height:0!important;width:auto!important;margin:0 14px 0 0!important;padding:9px 18px!important;border-radius:999px!important;font:600 14px/1 Yantramanav,"Source Sans Pro",system-ui,sans-serif!important;text-decoration:none!important;vertical-align:middle!important;box-shadow:none!important}
+@media(max-width:520px){.r24-demo-banner{bottom:76px;right:auto;max-width:calc(100vw - 28px)}}

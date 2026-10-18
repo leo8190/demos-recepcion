@@ -1,0 +1,61 @@
+/* Working hours */
+.bt_bb_working_hours_inner_row:after {
+	content: "";
+	width: 100%;
+	border-bottom: 1px solid;
+	display: block;
+	opacity: .1;
+	color: #ffffff;
+}
+.bt_bb_working_hours_inner_row:last-child:after {
+	display: none;
+}
+.bt_bb_working_hours_inner_wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	line-height: 2;
+	padding: .5em 0;
+}
+.bt_bb_working_hours_inner_wrapper .bt_bb_working_hours_inner_title {
+	flex: 1 1 45%;
+	max-width: 45%;
+	padding-right: 10px;
+}
+.rtl .bt_bb_working_hours_inner_wrapper .bt_bb_working_hours_inner_title {
+	padding-right: 0;
+	padding-left: 10px;
+}
+.bt_bb_working_hours_inner_wrapper .bt_bb_working_hours_inner_content {
+	flex: 1 1 55%;
+	max-width: 55%;
+	padding-right: 80px;
+    opacity: 0.6;
+}
+.rtl .bt_bb_working_hours_inner_wrapper .bt_bb_working_hours_inner_content {
+	padding-right: 0;
+	padding-left: 80px;
+}
+.bt_bb_working_hours_inner_wrapper .bt_bb_working_hours_inner_link {
+	width: 80px;
+	float: right;
+	margin: 0 -100% 0 -80px;
+	overflow: hidden;
+	text-align: center;
+}
+.rtl .bt_bb_working_hours_inner_wrapper .bt_bb_working_hours_inner_link {
+	float: left;
+	margin: 0 -80px 0 -100%;
+}
+.bt_bb_working_hours_inner_wrapper .bt_bb_working_hours_inner_link a {
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	line-height: 1;
+	text-align: center;
+}
+.bt_bb_working_hours_inner_wrapper .bt_bb_working_hours_inner_link a:after {
+	display: block;
+	content: '\e66b';
+	font: normal 14px/21px Icon7Stroke;
+}

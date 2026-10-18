@@ -1,0 +1,77 @@
+/* Recepción 24 h · variante "bufete de inmigración" (EE.UU., español) — widget de demo 100% cliente.
+   Basado en recepcion-cpa.css; colores por firma con --r24-c1 / --r24-c2. */
+:root{--r24-c1:#123a5c;--r24-c2:#1f6fb2;--r24-bg:#f4f7fb;--r24-ink:#14283a;--r24-soft:#e8f0f8}
+.r24-demo-banner{position:fixed;left:12px;bottom:12px;z-index:2147483000;background:var(--r24-c1);color:#fff;font:600 12px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;padding:7px 11px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:.94;pointer-events:none;max-width:calc(100vw - 120px)}
+button.r24-launch{position:fixed;right:20px;bottom:20px;z-index:2147483001;display:flex;align-items:center;gap:9px;border:0!important;cursor:pointer;background:linear-gradient(135deg,var(--r24-c1),var(--r24-c2))!important;color:#fff!important;font:700 15px/1 system-ui,-apple-system,"Segoe UI",sans-serif!important;padding:14px 18px 14px 14px!important;border-radius:999px!important;box-shadow:0 10px 26px rgba(10,40,80,.38)!important;text-transform:none!important;letter-spacing:0!important}
+.r24-launch .r24-dot{width:9px;height:9px;border-radius:50%;background:#3ee07a;box-shadow:0 0 0 3px rgba(62,224,122,.25)}
+.r24-launch.r24-hide{display:none!important}
+.r24-launch img.r24-face{width:36px;height:36px;border-radius:50%;background:#fff;flex:none;margin:-8px 0 -8px -6px;box-shadow:0 0 0 2px rgba(255,255,255,.85)}
+.r24-panel{position:fixed;right:20px;bottom:20px;z-index:2147483002;width:400px;max-width:calc(100vw - 24px);height:640px;max-height:calc(100vh - 40px);display:none;flex-direction:column;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(6,25,50,.35);font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--r24-ink);text-align:left;letter-spacing:0}
+.r24-panel *{box-sizing:border-box}
+.r24-panel.r24-open{display:flex}
+@media(max-width:520px){.r24-panel{right:0;bottom:0;width:100vw;max-width:100vw;height:100%;max-height:100%;border-radius:0}button.r24-launch{right:14px;bottom:14px}}
+.r24-head{background:linear-gradient(135deg,var(--r24-c1),var(--r24-c2));color:#fff;padding:12px 14px;display:flex;align-items:center;gap:11px}
+.r24-av{width:42px;height:42px;border-radius:50%;background:var(--r24-soft);flex:none;overflow:hidden}
+.r24-av img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.r24-ht{flex:1;min-width:0}.r24-ht b{display:block;font-size:15.5px;color:#fff}.r24-ht small{opacity:.88;font-size:12.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.r24-online{font-weight:600;font-size:11px;color:#3ee07a;margin-left:4px;white-space:nowrap}
+.r24-lang{display:flex;border:1px solid rgba(255,255,255,.5);border-radius:999px;overflow:hidden;flex:none}
+.r24-panel button.r24-lb{background:transparent!important;color:#fff!important;border:0!important;padding:5px 8px!important;font:700 11.5px/1 system-ui,sans-serif!important;cursor:pointer;min-height:0!important;text-transform:none!important;box-shadow:none!important}
+.r24-panel button.r24-lb.r24-on{background:#fff!important;color:var(--r24-c1)!important}
+.r24-panel button.r24-x{background:rgba(255,255,255,.18)!important;border:0!important;color:#fff!important;width:32px!important;height:32px!important;border-radius:50%!important;cursor:pointer;font-size:20px!important;line-height:1!important;padding:0!important;flex:none;min-height:0!important}
+.r24-status{font-size:12.5px;padding:7px 14px;background:var(--r24-soft);color:var(--r24-c1);border-bottom:1px solid #dbe5ef}
+.r24-status.r24-closed{background:#fff6e6;color:#7a4b00;border-color:#f5e2bd}
+.r24-body{flex:1;overflow-y:auto;padding:14px;background:var(--r24-bg);display:flex;flex-direction:column;gap:8px}
+.r24-msg{max-width:88%;padding:10px 13px;border-radius:16px;white-space:pre-line;word-wrap:break-word;font-size:15px}
+.r24-bot{background:#fff;border:1px solid #e0e8f1;border-bottom-left-radius:5px;align-self:flex-start}
+.r24-user{background:var(--r24-c2);color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
+.r24-msg a{color:var(--r24-c2);font-weight:600}.r24-user a{color:#fff}
+.r24-rule{background:#fffaf0;border:1px solid #f1dfb8;border-left:4px solid #e0a526}
+.r24-ok{border-left:4px solid #25b05e}
+.r24-owner{max-width:100%;background:#fff;border:1px solid #c9d8e8;border-left:4px solid var(--r24-c1);font-size:13.6px;line-height:1.5}
+.r24-owner b{color:var(--r24-c1)}
+.r24-chips{display:flex;flex-wrap:wrap;gap:6px;align-self:flex-start;max-width:100%}
+.r24-panel .r24-chip{border:1px solid var(--r24-c2)!important;background:#fff!important;color:var(--r24-c2)!important;border-radius:999px!important;padding:7px 12px!important;font:600 13.5px/1.15 system-ui,sans-serif!important;cursor:pointer;text-decoration:none!important;text-transform:none!important;letter-spacing:0!important;box-shadow:none!important;min-height:0!important;display:inline-block}
+.r24-panel .r24-chip:hover{background:var(--r24-c2)!important;color:#fff!important}
+.r24-panel .r24-chip.r24-main{background:var(--r24-c2)!important;color:#fff!important}
+.r24-typing{align-self:flex-start;background:#fff;border:1px solid #e0e8f1;border-radius:16px;padding:10px 14px;color:#6b8199;font-size:13px}
+.r24-foot{display:flex;gap:8px;padding:10px;border-top:1px solid #e0e8f1;background:#fff;margin:0}
+.r24-panel input.r24-in{flex:1;border:1px solid #c9d6e4!important;border-radius:999px!important;padding:11px 15px!important;font:15px system-ui,sans-serif!important;outline:none;min-width:0;background:#fff!important;color:var(--r24-ink)!important;box-shadow:none!important;height:auto!important;margin:0!important}
+.r24-panel input.r24-in:focus{border-color:var(--r24-c2)!important}
+.r24-panel button.r24-send{border:0!important;background:var(--r24-c2)!important;color:#fff!important;border-radius:999px!important;padding:0 16px!important;font:700 14px system-ui,sans-serif!important;cursor:pointer;text-transform:none!important;min-height:40px;box-shadow:none!important}
+.r24-legal{font-size:11px;color:#6b8199;text-align:center;padding:0 10px 8px;background:#fff}
+/* Simulación de la reserva (tipo Calendly) y del alta en portal (tipo TaxDome): placeholders de demo */
+.r24-ov{position:absolute;inset:0;background:rgba(10,25,45,.45);display:flex;align-items:flex-end;z-index:5}
+.r24-sheet{background:#fff;width:100%;max-height:92%;overflow-y:auto;border-radius:16px 16px 0 0;padding:16px 16px 14px}
+.r24-sheet h4{margin:0 0 2px;font:700 16px/1.3 system-ui,sans-serif;color:var(--r24-c1)}
+.r24-sheet .r24-ph{font-size:11.5px;color:#8a6d1f;background:#fff6dd;border-radius:6px;padding:4px 7px;display:inline-block;margin:4px 0 10px}
+.r24-sheet .r24-day{font-weight:700;font-size:13px;margin:8px 0 5px;color:var(--r24-ink)}
+.r24-slots{display:flex;flex-wrap:wrap;gap:6px}
+.r24-panel button.r24-slot{border:1px solid var(--r24-c2)!important;background:#fff!important;color:var(--r24-c2)!important;border-radius:8px!important;padding:7px 10px!important;font:600 13px system-ui,sans-serif!important;cursor:pointer;min-height:0!important;text-transform:none!important}
+.r24-panel button.r24-slot.r24-sel{background:var(--r24-c2)!important;color:#fff!important}
+.r24-sheet label{display:block;font-size:12px;color:#5b6f84;margin:8px 0 3px}
+.r24-sheet .r24-f{width:100%;border:1px solid #c9d6e4;border-radius:8px;padding:8px 10px;font:14px system-ui,sans-serif;background:#f8fafc;color:var(--r24-ink)}
+.r24-sheet .r24-row{display:flex;gap:8px;margin-top:12px}
+.r24-panel button.r24-btn{flex:1;border:0!important;background:var(--r24-c2)!important;color:#fff!important;border-radius:10px!important;padding:11px!important;font:700 14px system-ui,sans-serif!important;cursor:pointer;text-transform:none!important;min-height:0!important}
+.r24-panel button.r24-btn.r24-sec{background:#eef2f6!important;color:var(--r24-ink)!important}
+.r24-panel button.r24-btn:disabled{opacity:.45;cursor:default}
+/* Flujo de WhatsApp simulado (botón de WhatsApp de la web del estudio) */
+.r24-panel.r24-wa .r24-head{background:#075e54!important}
+.r24-panel.r24-wa .r24-body{background:#efe7dd url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='6' cy='6' r='1.4' fill='%23d9cfc3'/%3E%3Ccircle cx='26' cy='22' r='1.2' fill='%23d9cfc3'/%3E%3C/svg%3E")!important}
+.r24-panel.r24-wa .r24-user{background:#d9fdd3!important;color:#111b21!important;border-bottom-right-radius:5px}
+.r24-panel.r24-wa .r24-bot{background:#fff;border-color:#fff}
+.r24-panel.r24-wa .r24-status{background:#e1f3ee;color:#075e54;border-color:#cde8e0}
+.r24-panel.r24-wa .r24-chip{border-color:#128c7e!important;color:#128c7e!important}
+.r24-panel.r24-wa .r24-chip:hover,.r24-panel.r24-wa .r24-chip.r24-main{background:#128c7e!important;color:#fff!important}
+.r24-panel.r24-wa button.r24-send{background:#00a884!important}
+.r24-panel.r24-wa .r24-lang{border-color:rgba(255,255,255,.4)}
+/* Inmigración: aviso legal fijo, tarjeta de urgencia, chips-enlace (tel:) */
+.r24-notice{font-size:11.8px;line-height:1.35;padding:6px 14px;background:#fff8e6;color:#6b4a00;border-bottom:1px solid #f1dfb8}
+.r24-urgent{background:#fff1f0;border:1px solid #f3c2bd;border-left:4px solid #d93025}
+.r24-urgent b{color:#a50e0e}
+.r24-panel a.r24-chip{display:inline-block}
+.r24-panel a.r24-chip.r24-call{background:#d93025!important;border-color:#d93025!important;color:#fff!important}
+.r24-owner .r24-flag{display:inline-block;background:#d93025;color:#fff;border-radius:6px;padding:1px 7px;font-weight:700;font-size:12px}
+.r24-owner .r24-flag.r24-norm{background:#2a7a3b}
+.r24-owner .r24-sec-t{margin-top:6px;padding-top:6px;border-top:1px dashed #c9d8e8;font-size:12.4px;color:#4b6075}
+.r24-panel .r24-lang{display:none!important}

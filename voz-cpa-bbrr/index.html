@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sample CPA — DEMO de voz (estudio ficticio)</title>
+<style>
+:root{--c1:#123a5c;--c2:#1f6fb2;--ink:#14283a;--mut:#56697d}
+*{box-sizing:border-box}body{margin:0;font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#fff}
+.demo-top{background:#fff3cd;color:#6b4e00;text-align:center;font-size:13px;font-weight:600;padding:7px 12px;border-bottom:1px solid #f0dc9a}
+header{display:flex;align-items:center;justify-content:space-between;padding:18px 6vw;border-bottom:1px solid #e6edf3;gap:16px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:22px;color:var(--c1);letter-spacing:-.3px}.logo span{color:var(--c2)}
+nav a{color:var(--ink);text-decoration:none;margin-left:22px;font-size:15px}
+.lt{display:inline-flex;border:1px solid #c9d6e4;border-radius:999px;overflow:hidden;margin-left:22px;vertical-align:middle}
+.lt button{border:0;background:#fff;padding:5px 10px;font:700 12px system-ui;cursor:pointer;color:var(--c1)}.lt button.on{background:var(--c1);color:#fff}
+.hero{background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;padding:72px 6vw 80px}
+.hero h1{font-size:clamp(30px,4.2vw,48px);line-height:1.15;margin:0 0 16px;max-width:760px}
+.hero p{font-size:18px;max-width:640px;opacity:.92;margin:0 0 28px}
+.btn{display:inline-block;background:#fff;color:var(--c1);font-weight:700;padding:13px 22px;border-radius:10px;text-decoration:none;margin-right:10px;cursor:pointer}
+.btn.o{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.7)}
+section{padding:56px 6vw}h2{font-size:28px;margin:0 0 22px;color:var(--c1)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{border:1px solid #e3eaf1;border-radius:14px;padding:22px;background:#fbfdff}.card h3{margin:0 0 6px;font-size:18px}.card p{margin:0;color:var(--mut);font-size:15px}
+.steps{counter-reset:s}.steps li{list-style:none;margin:0 0 14px;padding-left:44px;position:relative}.steps li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--c2);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+.alt{background:#f4f7fb}
+footer{padding:30px 6vw 90px;color:var(--mut);font-size:14px;border-top:1px solid #e6edf3}
+@media(max-width:700px){nav a{display:none}.hero{padding:48px 6vw 56px}}
+</style>
+</head>
+<body>
+<div class="demo-top" data-en="DEMO — “Sample CPA” is a fictional firm built to show the 24/7 front desk. Not a real business; nothing is sent." data-es="DEMO — «Sample CPA» es un estudio ficticio armado para mostrar la recepción 24/7. No es un negocio real; no se envía nada."></div>
+<header>
+  <div class="logo">Sample<span>CPA</span></div>
+  <nav><a href="#services" data-en="Services" data-es="Servicios"></a><a href="#how" data-en="How we work" data-es="Cómo trabajamos"></a><a href="#contact" data-en="Contact" data-es="Contacto"></a>
+    <span class="lt"><button type="button" data-l="en">EN</button><button type="button" data-l="es">ES</button></span></nav>
+</header>
+<div class="hero">
+  <h1 data-en="Small-firm tax &amp; accounting, without the phone tag." data-es="Impuestos y contabilidad de estudio chico, sin perseguirnos por teléfono."></h1>
+  <p data-en="Individual returns, small business taxes and bookkeeping, and IRS notices. Every conversation is booked so you get our full attention." data-es="Declaraciones personales, impuestos y contabilidad de pequeñas empresas, y avisos del IRS. Cada conversación se reserva para que tengas toda nuestra atención."></p>
+  <a class="btn" data-r24-open="1" data-en="Book a consultation" data-es="Reservar una consulta"></a>
+  <a class="btn o" data-r24-open="1" data-en="Got an IRS letter?" data-es="¿Te llegó una carta del IRS?"></a>
+  <a class="btn" data-r24-voz="1" data-en="🎙️ Talk to the front desk" data-es="🎙️ Habla con la recepcionista"></a>
+</div>
+<section id="services">
+  <h2 data-en="What we do" data-es="Qué hacemos"></h2>
+  <div class="grid">
+    <div class="card"><h3 data-en="Individual returns" data-es="Declaraciones personales"></h3><p data-en="1040s for W-2 employees, freelancers, investors and families." data-es="Formulario 1040 para empleados, independientes, inversores y familias."></p></div>
+    <div class="card"><h3 data-en="Small business" data-es="Pequeñas empresas"></h3><p data-en="LLC, S-corp and partnership returns, monthly bookkeeping and payroll." data-es="Declaraciones de LLC, S-corp y sociedades; contabilidad mensual y nómina."></p></div>
+    <div class="card"><h3 data-en="IRS notices" data-es="Avisos del IRS"></h3><p data-en="CP2000, CP14, balance-due letters and audits. Don't ignore the letter: book a review." data-es="CP2000, CP14, cartas de saldo adeudado y auditorías. No ignores la carta: reserva una revisión."></p></div>
+  </div>
+</section>
+<section id="how" class="alt">
+  <h2 data-en="How we work" data-es="Cómo trabajamos"></h2>
+  <ul class="steps">
+    <li data-en="Tell our front desk what's going on — any time, in English or Spanish." data-es="Cuéntale a nuestra recepción qué está pasando, a cualquier hora, en inglés o español."></li>
+    <li data-en="Book a short consultation (new clients) or a call (existing clients)." data-es="Reserva una consulta corta (clientes nuevos) o una llamada (clientes existentes)."></li>
+    <li data-en="Create your secure client portal account and upload your documents." data-es="Crea tu cuenta en el portal seguro de clientes y sube tus documentos."></li>
+  </ul>
+</section>
+<section id="contact">
+  <h2 data-en="Contact" data-es="Contacto"></h2>
+  <p data-en="Office hours: Monday–Friday, 9:00 AM–5:00 PM ET. Phone (555) 010-0199 · hello@sample-cpa.example (fictional)." data-es="Horario: lunes a viernes, 9:00–17:00 (hora del Este). Tel. (555) 010-0199 · hello@sample-cpa.example (ficticios)."></p>
+</section>
+<footer data-en="© 2026 Sample CPA — fictional demo firm. The chat is an automated demo: it never gives tax advice and nothing you type is sent anywhere." data-es="© 2026 Sample CPA — estudio ficticio de demo. El chat es una demo automática: nunca da asesoramiento impositivo y nada de lo que escribas se envía."></footer>
+<script>
+window.R24_CPA = {
+  firm: "Sample CPA", owner: { en: "the CPA", es: "el contador" }, sub: { en: "Tax & accounting", es: "Impuestos y contabilidad" },
+  lang: (/[?&]lang=en/.test(location.search) ? "en" : "es"), tz: "America/New_York", tzLabel: "ET",
+  hours: { 1: [[540, 1020]], 2: [[540, 1020]], 3: [[540, 1020]], 4: [[540, 1020]], 5: [[540, 1020]], 0: [], 6: [] },
+  hoursTxt: { en: "Monday–Friday, 9:00 AM–5:00 PM.\nYou can book any time here, even after hours.", es: "Lunes a viernes, 9:00 a 17:00.\nPuedes reservar aquí a cualquier hora, incluso fuera de horario." },
+  contact: { en: "(555) 010-0199 or hello@sample-cpa.example (fictional)", es: "(555) 010-0199 o hello@sample-cpa.example (ficticios)" },
+  links: { newClient: "[LINK_CALENDLY_CONSULTA_NUEVO_CLIENTE]", existing: "[LINK_CALENDLY_CLIENTE_EXISTENTE]", portal: "[LINK_ALTA_TAXDOME]", portalLogin: "[LINK_LOGIN_TAXDOME]" },
+  portalName: "TaxDome", mock: true,
+  banner: { en: "Private demo — fictional firm “Sample CPA”", es: "Demo privada — estudio ficticio «Sample CPA»" },
+  base: "recepcion/"
+};
+(function () {
+  function paint(l) {
+    document.documentElement.lang = l;
+    [].forEach.call(document.querySelectorAll("[data-en]"), function (e) { e.innerHTML = e.getAttribute("data-" + l); });
+    [].forEach.call(document.querySelectorAll(".lt button"), function (b) { b.classList.toggle("on", b.getAttribute("data-l") === l); });
+  }
+  paint(window.R24_CPA.lang);
+  document.addEventListener("r24:lang", function (e) { paint(e.detail); });
+  [].forEach.call(document.querySelectorAll(".lt button"), function (b) { b.onclick = function () { var l = b.getAttribute("data-l"); if (window.R24) R24.setLang(l); paint(l); }; });
+})();
+</script>
+<script src="recepcion/recepcion-cpa.js" defer></script>
+<script>window.R24_VOZ = { session: null, model: "grok-voice-3.0", voice: "eve", maxSec: 300 };</script>
+<script src="recepcion/voz.js" defer></script>
+</body>
+</html>

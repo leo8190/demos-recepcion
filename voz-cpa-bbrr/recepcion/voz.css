@@ -1,0 +1,15 @@
+/* Recepción IA · capa de voz (botón + barra de llamada). Usa los colores del widget (--r24-c1/--r24-c2). */
+button.r24v-btn{position:fixed;right:20px;bottom:86px;z-index:2147483001;border:0;cursor:pointer;background:#fff;color:var(--r24-c1,#123a5c);font:700 14px/1 system-ui,-apple-system,"Segoe UI",sans-serif;padding:12px 16px;border-radius:999px;box-shadow:0 8px 22px rgba(10,40,80,.28);border:2px solid var(--r24-c2,#1f6fb2)}
+button.r24v-btn:hover{background:#f2f7fc}.r24v-hide{display:none!important}
+.r24v-bar{position:fixed;left:12px;bottom:52px;z-index:2147483003;width:360px;max-width:calc(100vw - 24px);display:none;background:#0f2236;color:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 16px 40px rgba(0,0,0,.35);font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+.r24v-bar.r24v-on{display:block}
+.r24v-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.r24v-st{flex:1;font-weight:700;min-width:0}.r24v-tm{order:3;width:100%;font-size:12px;opacity:.75;white-space:nowrap}.r24v-hang{white-space:nowrap}
+.r24v-dot{width:12px;height:12px;border-radius:50%;background:#7a8a99;flex:none}
+.r24v-listen .r24v-dot{background:#2ecc71;animation:r24vp 1s infinite}.r24v-speak .r24v-dot{background:#4aa3ff;animation:r24vp .6s infinite}.r24v-think .r24v-dot{background:#f5c542}
+@keyframes r24vp{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.45);opacity:.6}}
+.r24v-hang{border:0;background:#e5484d;color:#fff;font:700 13px system-ui;padding:8px 12px;border-radius:999px;cursor:pointer}
+.r24v-badge{font-size:12px;opacity:.8;margin:6px 0 4px}
+.r24v-log{max-height:170px;overflow:auto;font-size:13px}.r24v-log:empty{display:none}
+.r24v-l{padding:3px 0;border-top:1px solid rgba(255,255,255,.08)}.r24v-user{color:#bfe3ff}.r24v-user:before{content:"🗣️ "}.r24v-bot:before{content:"🎧 "}.r24v-sys{color:#f5c542}.r24v-sum{color:#b6f5c9}
+.r24v-pre{white-space:pre-wrap;font:11px/1.35 ui-monospace,monospace;margin:4px 0 0;color:#dfffe9}
+@media(max-width:520px){.r24v-bar{left:8px;right:8px;width:auto;top:8px;bottom:auto}button.r24v-btn{right:14px;bottom:80px}}
