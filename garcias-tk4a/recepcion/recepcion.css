@@ -61,3 +61,7 @@
 .r24-cta-p{margin:18px 0 4px;text-align:center}
 a.r24-cta-link{display:inline-block;background:#c62828;color:#fff!important;font:700 16px Roboto,system-ui,sans-serif;padding:12px 22px;border-radius:999px;text-decoration:none!important;box-shadow:0 6px 18px rgba(198,40,40,.35)}
 a.r24-cta-link:hover{background:#e53935}
+
+/* R24-HUMANO-1018 */
+.r24-panel button.r24-human{display:block!important;width:100%!important;margin:0!important;padding:8px 14px!important;border:0!important;border-bottom:1px solid rgba(0,0,0,.08)!important;border-radius:0!important;background:#fff!important;color:#222!important;font:600 13px/1.3 system-ui,-apple-system,Segoe UI,Roboto,sans-serif!important;text-align:left!important;cursor:pointer!important;text-transform:none!important;letter-spacing:0!important;box-shadow:none!important}
+.r24-panel button.r24-human:hover{background:#f4f4f4!important}

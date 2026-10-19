@@ -1,3 +1,4 @@
+/* R24-HUMANO-1018 */
 /* R24-BRIEF-1018: avatar humano, botones rápidos, "que me llamen", aviso al equipo, sin "no tengo ese dato" */
 /* Recepción 24 h · Clínica Dental El Porvenir (Sevilla, C/ Bogotá 25) — DEMO privada.
    100% del lado del cliente: sin APIs, sin claves, sin envío de datos.
@@ -210,15 +211,22 @@
     launch = el("button", "r24-launch", '<img class="r24-face" src="' + base + 'avatar.svg" alt="Recepcionista"><span>Recepción 24 h</span><span class="r24-dot"></span>');
     launch.type = "button"; launch.setAttribute("aria-label", "Abrir la recepción 24 h"); document.body.appendChild(launch);
     panel = el("div", "r24-panel"); panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "Recepción 24 h");
-    panel.innerHTML = '<div class="r24-head"><div class="r24-av"><img class="r24-face" src="' + base + 'avatar.svg" alt="Recepcionista"></div><div class="r24-ht"><b>Recepción 24 h <span class="r24-online">● en línea</span></b><small>Clínica Dental El Porvenir · C/ Bogotá 25, Sevilla</small></div><button class="r24-x" type="button" aria-label="Cerrar">×</button></div><div class="r24-status"></div><div class="r24-body" aria-live="polite"></div><form class="r24-foot"><input class="r24-in" type="text" placeholder="Escriba su pregunta…" autocomplete="off" maxlength="300"><button class="r24-send" type="submit">Enviar</button></form><div class="r24-legal">Asistente automático de demostración · sus datos no se envían a ningún sitio</div>';
+    panel.innerHTML = '<div class="r24-head"><div class="r24-av"><img class="r24-face" src="' + base + 'avatar.svg" alt="Recepcionista"></div><div class="r24-ht"><b>Recepción 24 h <span class="r24-online">● en línea</span></b><small>Clínica Dental El Porvenir · C/ Bogotá 25, Sevilla</small></div><button class="r24-x" type="button" aria-label="Cerrar">×</button></div><div class="r24-status"></div><button class="r24-human" type="button">👤 Hablar con una persona</button><div class="r24-body" aria-live="polite"></div><form class="r24-foot"><input class="r24-in" type="text" placeholder="Escriba su pregunta…" autocomplete="off" maxlength="300"><button class="r24-send" type="submit">Enviar</button></form><div class="r24-legal">Asistente automático de demostración · sus datos no se envían a ningún sitio</div>';
     document.body.appendChild(panel);
-    body = panel.querySelector(".r24-body"); input = panel.querySelector(".r24-in"); status = panel.querySelector(".r24-status");
+    body = panel.querySelector(".r24-body"); input = panel.querySelector(".r24-in"); status = panel.querySelector(".r24-status"); panel.querySelector(".r24-human").onclick = humano;
     launch.onclick = function () { open(); };
     panel.querySelector(".r24-x").onclick = function () { panel.classList.remove("r24-open"); launch.classList.remove("r24-hide"); document.documentElement.classList.remove("r24-panel-open"); };
     panel.querySelector("form").onsubmit = function (ev) { ev.preventDefault(); ev.stopImmediatePropagation(); var t = input.value.trim(); if (!t) return; input.value = ""; handle(t); };
     document.addEventListener("click", function (ev) {
       var a = ev.target.closest && ev.target.closest("[data-r24-open]"); if (a) { ev.preventDefault(); ev.stopPropagation(); open(a.getAttribute("data-r24-open")); }
     }, true);
+  }
+  // R24-HUMANO-1018: siempre a la vista; nunca deja al paciente atrapado con el asistente
+  function humano() {
+    flow = null; addUser("👤 Hablar con una persona");
+    var n = madridNow();
+    addBot(isOpen(n) ? "Claro. Ahora la clínica está abierta: llame al " + C.tel + " y le atiende una persona del equipo. Si lo prefiere, le llaman ellos: me deja su nombre y teléfono y listo."
+      : "Claro. Ahora la clínica está cerrada (vuelven " + nextOpening(n) + "). Déjeme su nombre y teléfono y una persona del equipo le llama en cuanto abran.", [TEL, LLAMADA_CHIP]);
   }
   function greet() {
     addBot("¡Hola! 👋 Soy la recepción virtual de Clínica Dental El Porvenir (C/ Bogotá 25, Sevilla). Le ayudo a pedir cita, con una urgencia o con dudas de tratamientos, horario, promociones y financiación, a cualquier hora, sin esperar a que le cojan el teléfono.\n¿En qué le ayudo?", menuChips());

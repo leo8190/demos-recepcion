@@ -1,3 +1,4 @@
+/* R24-HUMANO-1018 */
 /* R24-BRIEF-1018: avatar humano, botones rápidos, "que me llamen", aviso al equipo, sin "no tengo ese dato" */
 /* Recepción 24 h · Auto Mechanic Garcia's (taller mecánico, Tomball/Houston TX) — DEMO privada, bilingüe ES/EN.
    100% del lado del cliente: sin APIs, sin claves, sin envío de datos.
@@ -228,6 +229,7 @@
     panel.querySelector(".r24-legal").textContent = L("Asistente automático de demostración · sus datos no se envían a ningún sitio", "Automated demo assistant · your data isn't sent anywhere");
     launch.querySelector(".r24-lt").textContent = L("Recepción 24 h", "24/7 Front Desk");
     banner.textContent = L("Demo privada preparada para Auto Mechanic Garcia's", "Private demo prepared for Auto Mechanic Garcia's");
+    panel.querySelector(".r24-human").textContent = L("👤 Hablar con una persona", "👤 Talk to a person");
     panel.classList.toggle("r24-wamode", waMode);
   }
   var banner;
@@ -238,9 +240,9 @@
     launch = el("button", "r24-launch", '<img class="r24-face" src="' + base + 'avatar.svg" alt="Recepcionista"><span class="r24-lt"></span><span class="r24-dot"></span>');
     launch.type = "button"; launch.setAttribute("aria-label", L("Abrir la recepción 24 h", "Open the 24/7 front desk")); document.body.appendChild(launch);
     panel = el("div", "r24-panel"); panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "Recepción 24 h");
-    panel.innerHTML = '<div class="r24-head"><div class="r24-av"><img class="r24-face" src="' + base + 'avatar.svg" alt="Recepcionista"></div><div class="r24-ht"><b></b><small></small></div><button class="r24-lang" type="button"></button><button class="r24-x" type="button" aria-label="Cerrar">×</button></div><div class="r24-status"></div><div class="r24-body" aria-live="polite"></div><form class="r24-foot"><input class="r24-in" type="text" autocomplete="off" maxlength="300"><button class="r24-send" type="submit"></button></form><div class="r24-legal"></div>';
+    panel.innerHTML = '<div class="r24-head"><div class="r24-av"><img class="r24-face" src="' + base + 'avatar.svg" alt="Recepcionista"></div><div class="r24-ht"><b></b><small></small></div><button class="r24-lang" type="button"></button><button class="r24-x" type="button" aria-label="Cerrar">×</button></div><div class="r24-status"></div><button class="r24-human" type="button"></button><div class="r24-body" aria-live="polite"></div><form class="r24-foot"><input class="r24-in" type="text" autocomplete="off" maxlength="300"><button class="r24-send" type="submit"></button></form><div class="r24-legal"></div>';
     document.body.appendChild(panel);
-    body = panel.querySelector(".r24-body"); input = panel.querySelector(".r24-in"); status = panel.querySelector(".r24-status");
+    body = panel.querySelector(".r24-body"); input = panel.querySelector(".r24-in"); status = panel.querySelector(".r24-status"); panel.querySelector(".r24-human").onclick = humano;
     headTexts();
     launch.onclick = function () { open(); };
     panel.querySelector(".r24-x").onclick = function () { panel.classList.remove("r24-open"); launch.classList.remove("r24-hide"); document.documentElement.classList.remove("r24-panel-open"); };
@@ -254,6 +256,13 @@
     if (l === lang) return; lang = l; headTexts(); statusText();
     if (announce) addBot(L("Perfecto, seguimos en español. ¿En qué le ayudo?", "Sure, let's continue in English. How can I help?"), flow ? [] : menuChips());
     if (flow && announce) setTimeout(function () { ask(flow.step); }, 600);
+  }
+  // R24-HUMANO-1018: siempre a la vista; nunca deja al cliente atrapado con el asistente
+  function humano() {
+    flow = null; addUser(L("👤 Hablar con una persona", "👤 Talk to a person"));
+    var n = nowTx();
+    addBot(isOpen(n) ? L("Claro. El taller está abierto ahora: llame al " + C.tel + " y le atiende una persona. Si prefiere, le llaman ellos: me deja su nombre y teléfono.", "Sure. The shop is open now: call " + C.tel + " and a person will pick up. Or they can call you: just leave your name and number.")
+      : L("Claro. El taller está cerrado ahora (abre " + nextOpening(n) + "). Déjeme su nombre y teléfono y una persona del taller le llama en cuanto abran.", "Sure. The shop is closed right now (opens " + nextOpening(n) + "). Leave your name and number and someone from the shop will call you as soon as they open."), [TEL(), WA(), LLAMADA_CHIP]);
   }
   function greet() {
     addBot(L("¡Hola! 👋 Soy la recepción virtual de Auto Mechanic Garcia's (Tomball, TX). Le ayudo a pedir un presupuesto o una cita, con un auto varado o con dudas de servicios y horario, a cualquier hora y sin esperar a que le contesten el teléfono. Hablamos español.\n¿En qué le ayudo?",
