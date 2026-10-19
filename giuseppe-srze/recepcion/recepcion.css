@@ -1,0 +1,89 @@
+/* Recepción 24 h — demo Giuseppe Auto Repair (100% cliente). Colores de su web: azul #23296C, dorado del logo #E5D673 */
+.r24-demo-banner{position:fixed;left:12px;bottom:12px;z-index:9998;background:#151515;color:#fff;font:600 12px/1.3 Inter,system-ui,sans-serif;padding:7px 11px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:.93;pointer-events:none;max-width:calc(100vw - 110px)}
+.r24-launch{position:fixed;right:20px;bottom:20px;z-index:9999;display:flex;align-items:center;gap:9px;border:0;cursor:pointer;background:linear-gradient(135deg,#23296C,#3a42a0);color:#fff;font:700 15px/1 Inter,system-ui,sans-serif;padding:14px 18px 14px 14px;border-radius:999px;box-shadow:0 10px 26px rgba(19,64,116,.4)}
+.r24-launch svg{width:24px;height:24px;flex:none}
+.r24-launch .r24-dot{width:9px;height:9px;border-radius:50%;background:#3ee07a;box-shadow:0 0 0 3px rgba(62,224,122,.25)}
+.r24-launch.r24-hide{display:none}
+.r24-panel{position:fixed;right:20px;bottom:20px;z-index:10000;width:380px;max-width:calc(100vw - 24px);height:600px;max-height:calc(100vh - 40px);display:none;flex-direction:column;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(36,40,40,.35);font:15px/1.45 Inter,system-ui,sans-serif;color:#151515}
+.r24-panel.r24-open{display:flex}
+@media(max-width:520px){.r24-panel{right:0;bottom:0;width:100vw;max-width:100vw;height:100%;max-height:100%;border-radius:0}.r24-launch{right:14px;bottom:14px}}
+.r24-head{background:linear-gradient(135deg,#0a0400,#23296C);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.r24-av{width:40px;height:40px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden}
+.r24-av img{width:32px;height:auto}
+.r24-ht{flex:1;min-width:0}.r24-ht b{display:block;font-size:16px}.r24-ht small{opacity:.85;font-size:12.5px}
+.r24-x{background:rgba(255,255,255,.15);border:0;color:#fff;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:20px;line-height:1}
+.r24-status{font-size:12.5px;padding:7px 14px;background:#eef3fa;color:#23296C;border-bottom:1px solid #c9d8ec}
+.r24-status.r24-closed{background:#fff6e6;color:#7a4b00;border-color:#f5e2bd}
+.r24-body{flex:1;overflow-y:auto;padding:14px;background:#f6f6f6;display:flex;flex-direction:column;gap:8px}
+.r24-msg{max-width:86%;padding:10px 13px;border-radius:16px;white-space:pre-line;word-wrap:break-word}
+.r24-bot{background:#fff;border:1px solid #e4e4e4;border-bottom-left-radius:5px;align-self:flex-start}
+.r24-user{background:#23296C;color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
+.r24-msg a{color:#23296C;font-weight:600}.r24-user a{color:#fff}
+.r24-sum{background:#fff;border:1px solid #bfe3cc;border-left:4px solid #25d366}
+.r24-chips{display:flex;flex-wrap:wrap;gap:6px;align-self:flex-start;max-width:100%}
+.r24-chip{border:1px solid #23296C;background:#fff;color:#23296C;border-radius:999px;padding:7px 12px;font:600 13.5px/1.1 Inter,system-ui,sans-serif;cursor:pointer;text-decoration:none}
+.r24-chip:hover{background:#23296C;color:#fff}
+.r24-chip.r24-wa{border-color:#25d366;color:#128c4a}.r24-chip.r24-wa:hover{background:#25d366;color:#fff}
+.r24-typing{align-self:flex-start;background:#fff;border:1px solid #e4e4e4;border-radius:16px;padding:10px 14px;color:#777;font-size:13px}
+.r24-foot{display:flex;gap:8px;padding:10px;border-top:1px solid #e4e4e4;background:#fff}
+.r24-in{flex:1;border:1px solid #d6d6d6;border-radius:999px;padding:11px 15px;font:15px Inter,system-ui,sans-serif;outline:none;min-width:0}
+.r24-in:focus{border-color:#23296C}
+.r24-send{border:0;background:#23296C;color:#fff;border-radius:999px;padding:0 16px;font:700 14px Inter,system-ui,sans-serif;cursor:pointer}
+.r24-legal{font-size:11px;color:#777;text-align:center;padding:0 10px 8px;background:#fff}
+
+/* Blindaje frente al CSS de la web (Bootstrap + plantilla TUNEX) */
+.r24-panel,.r24-panel *{box-sizing:border-box;letter-spacing:normal;text-transform:none}
+.r24-panel{z-index:2147483000!important;font-family:Inter,system-ui,sans-serif!important}.r24-launch{z-index:2147482999!important}
+.r24-panel button.r24-send{background:#23296C!important;color:#fff!important;border:0!important;border-radius:999px!important;padding:0 16px!important;font:700 14px Inter,system-ui,sans-serif!important;min-height:40px}
+.r24-panel button.r24-x,.r24-panel button.r24-lang{background:rgba(255,255,255,.18)!important;color:#fff!important;padding:0!important;border:0!important;width:34px!important;height:34px!important;font-size:20px!important;line-height:1!important;border-radius:50%!important;cursor:pointer;flex:none}
+.r24-panel button.r24-lang{font:700 12px/1 Inter,system-ui,sans-serif!important;width:38px!important;border-radius:999px!important}
+.r24-panel button.r24-chip{background:#fff!important;color:#23296C!important;border:1px solid #3a42a0!important;border-radius:999px!important;padding:7px 12px!important;font:600 13.5px/1.1 Inter,system-ui,sans-serif!important}
+.r24-panel button.r24-chip:hover{background:#23296C!important;color:#fff!important}
+.r24-panel input.r24-in{border:1px solid #d6d6d6!important;border-radius:999px!important;padding:11px 15px!important;background:#fff!important;color:#151515!important;font-size:15px!important}
+.r24-panel code{background:#f1f1f1;border-radius:4px;padding:0 4px;font-size:12.5px}
+.r24-note{align-self:stretch;background:#fff8d6;border:1px dashed #d9b400;color:#5a4a00;border-radius:10px;padding:9px 11px;font-size:12.8px;line-height:1.4}
+.r24-av{background:#fff!important;padding:0!important}
+.r24-av img.r24-face{width:100%!important;height:100%!important;object-fit:cover!important;border-radius:50%}
+.r24-launch img.r24-face{width:36px!important;height:36px!important;border-radius:50%;background:#fff;flex:none;margin:-8px 0 -8px -6px;box-shadow:0 0 0 2px rgba(255,255,255,.85)}
+.r24-online{font-weight:600;font-size:11px;color:#3ee07a;margin-left:4px;white-space:nowrap}
+/* modo WhatsApp simulado */
+.r24-wamode .r24-head{background:#075e54!important}
+.r24-wamode .r24-body{background:#ece5dd}
+.r24-wamode .r24-user{background:#dcf8c6!important;color:#111!important}
+.r24-wamode .r24-status{background:#e7f6ee;color:#0b5132;border-color:#cdebd9}
+.r24-wamode .r24-status.r24-closed{background:#fff6e6;color:#7a4b00}
+.r24-wamode button.r24-send{background:#128c7e!important}
+/* tarjeta estática en lugar del mapa Mapbox */
+.r24-mapcard{height:100%;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:#1b1b1b;color:#fff;text-align:center;padding:18px;font:15px/1.4 Inter,system-ui,sans-serif}
+.r24-mapcard span{opacity:.6;font-size:12px}
+.r24-mapcard a{background:#23296C;color:#fff!important;padding:10px 18px;border-radius:999px;text-decoration:none;font-weight:700}
+@media(max-width:520px){.r24-demo-banner{bottom:78px;max-width:calc(100vw - 28px)}}
+.r24-cta-p{margin:18px 0 4px;text-align:center}
+a.r24-cta-link{display:inline-block;background:#23296C;color:#fff!important;font:700 16px Inter,system-ui,sans-serif;padding:12px 22px;border-radius:999px;text-decoration:none!important;box-shadow:0 6px 18px rgba(19,64,116,.35)}
+a.r24-cta-link:hover{background:#3a42a0}
+
+/* R24-HUMANO-1018 */
+.r24-panel button.r24-human{display:block!important;width:100%!important;margin:0!important;padding:8px 14px!important;border:0!important;border-bottom:1px solid rgba(0,0,0,.08)!important;border-radius:0!important;background:#fff!important;color:#222!important;font:600 13px/1.3 system-ui,-apple-system,Segoe UI,Inter,sans-serif!important;text-align:left!important;cursor:pointer!important;text-transform:none!important;letter-spacing:0!important;box-shadow:none!important}
+.r24-panel button.r24-human:hover{background:#f4f4f4!important}
+
+
+/* Andrade: la plantilla tiene un botón «Up» (back-to-top) fijo abajo a la derecha: se sube para no quedar debajo del botón de la recepción */
+.r24-head{background:linear-gradient(135deg,#0a0400,#23296C)!important}
+.back-to-top.show-back-to-top{bottom:84px!important}
+.r24-panel .r24-msg.r24-note{max-width:100%}
+.r24-panel a.r24-chip{display:inline-block}
+/* RaceTrack: resumen urgente y estado sin horario publicado */
+.r24-panel .r24-msg.r24-urgsum{background:#fff;border:1px solid #b9cbe4;border-left:4px solid #23296C}
+.r24-status.r24-nohours{background:#eef3fa;color:#0c2a4d;border-color:#c9d8ec}
+.r24-panel .r24-chip.r24-911{background:#b91c1c!important;color:#fff!important;border-color:#b91c1c!important}
+/* su tema (kit de Elementor) capitaliza botones y les cambia letra/espaciado: en la recepción se anula */
+.r24-panel button,.r24-panel .r24-chip,.r24-panel input,.r24-launch,.r24-launch *{text-transform:none!important;letter-spacing:normal!important;font-family:Inter,system-ui,sans-serif!important}
+/* Ajustes para su plantilla Linkeo: body en grid (la franja va a la fila 1), img{min-width:100%} global, barra inferior fija en móvil vertical (≤64em) */
+body{--_body-grid-rows:auto auto 1fr!important}.r24-strip{grid-row:1;grid-column:1/-1}
+.r24-launch img.r24-face,.r24-av img.r24-face,.r24-panel img{min-width:0!important;max-width:none;margin:0}
+.r24-launch img.r24-face{margin:-8px 0 -8px -6px!important}
+.r24-photo img{max-width:160px!important}
+.r24-launch .r24-lt{white-space:nowrap}
+@media only screen and (max-width:64em) and (orientation:portrait){.r24-launch{bottom:calc(62px + env(safe-area-inset-bottom))!important}.r24-demo-banner{bottom:calc(112px + env(safe-area-inset-bottom))!important}}
+.r24-panel .r24-ht b{color:#fff!important;font-family:Poppins,system-ui,sans-serif!important}.r24-panel .r24-ht small{color:#fff!important}
+.r24-panel button.r24-x{min-width:0!important;max-width:34px!important;flex:0 0 34px!important}.r24-panel button.r24-lang{min-width:0!important;flex:0 0 38px!important}
