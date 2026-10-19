@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .bg { fill: #0E2A47; }
+    .fg { fill: #FFB703; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #081D33; }
+    }
+  </style>
+  <rect class="bg" width="64" height="64" rx="14"/>
+  <!-- M monogram cut like a gauge needle -->
+  <path class="fg" d="M14 46V20l7-2 11 15 11-15 7 2v26h-8V32l-10 13-10-13v14z"/>
+</svg>
