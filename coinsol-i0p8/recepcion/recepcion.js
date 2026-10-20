@@ -223,7 +223,7 @@
     }, true);
   }
   function greet() {
-    addBot("¡Hola! 👋 Soy la recepción virtual de Coinsol Dental (Av. Manuel Siurot 52, Sevilla). Te ayudo a pedir cita, con una urgencia o con dudas de tratamientos, horario, parking y financiación, a cualquier hora, sin esperar a que te cojan el teléfono.\n¿En qué te ayudo?", menuChips());
+    addBot("¡Hola! 👋 Soy el asistente virtual con IA de Coinsol Dental (Av. Manuel Siurot 52, Sevilla). Te ayudo a pedir cita, con una urgencia o con dudas de tratamientos, horario, parking y financiación, a cualquier hora, sin esperar a que te cojan el teléfono.\n¿En qué te ayudo?", menuChips());
   }
   function open(mode) {
     panel.classList.add("r24-open"); launch.classList.add("r24-hide"); document.documentElement.classList.add("r24-panel-open"); statusText();

@@ -221,7 +221,7 @@
     panel.classList.add("r24-open"); launch.classList.add("r24-hide"); statusText();
     if (!opened) {
       opened = true;
-      addBot("¡Hola! 👋 Soy la recepción virtual de la Clínica Eugenia de Montijo. Te ayudo a pedir cita y a resolver dudas sobre tratamientos, financiación, horario o cómo llegar.\n¿En qué te ayudo?",
+      addBot("¡Hola! 👋 Soy el asistente virtual con IA de la Clínica Eugenia de Montijo. Te ayudo a pedir cita y a resolver dudas sobre tratamientos, financiación, horario o cómo llegar.\n¿En qué te ayudo?",
         [CITA_CHIP, { t: "Primera visita gratis", q: "primera visita gratis" }, { t: "Financiación", q: "financiación" }, { t: "Miedo al dentista", q: "sedación" }, { t: "Urgencia", q: "urgencia" }, { t: "Horario y dirección", q: "horario" }]);
     }
     setTimeout(function () { input.focus(); }, 50);

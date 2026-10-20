@@ -202,7 +202,7 @@
     panel.classList.add("r24-open"); launch.classList.add("r24-hide"); statusText();
     if (!opened) {
       opened = true;
-      addBot("¡Hola! 👋 Soy la recepción virtual de la Clínica Dental Dra. Díaz Aguilar (Vallecas y Tetuán). Puedo dejarle la cita pedida y resolver dudas de tratamientos, horario o cómo llegar.\n¿En qué le ayudo?",
+      addBot("¡Hola! 👋 Soy el asistente virtual con IA de la Clínica Dental Dra. Díaz Aguilar (Vallecas y Tetuán). Puedo dejarle la cita pedida y resolver dudas de tratamientos, horario o cómo llegar.\n¿En qué le ayudo?",
         [CITA_CHIP, { t: "TAC gratuito", q: "tac gratuito" }, { t: "Implantes", q: "implantes" }, { t: "Me duele una muela", q: "me duele una muela" }, { t: "Horario y clínicas", q: "horario" }, LLAMADA_CHIP]);
     }
     setTimeout(function () { input.focus(); }, 50);

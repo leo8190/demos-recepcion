@@ -278,8 +278,8 @@
     panel.classList.add("r24-open"); launch.classList.add("r24-hide"); document.documentElement.classList.add("r24-panel-open"); document.body.classList.remove("navigation-open"); statusText();
     if (!opened) {
       opened = true;
-      addBot(T("¡Hola! 👋 Soy la recepción virtual de Clínica Dental Ruzafa, en pleno barrio de Ruzafa. Te ayudo a pedir cita y con dudas de tratamientos, financiación, horario o cómo llegar.\nYou can also write to me in English. 🇬🇧\n¿En qué te ayudo?",
-        "Hi! 👋 I'm the virtual receptionist of Clínica Dental Ruzafa, in the heart of Ruzafa (Valencia). I can help you book an appointment and answer questions about treatments, financing, opening hours or how to get here.\nTambién puedes escribirme en español. 🇪🇸\nHow can I help?"),
+      addBot(T("¡Hola! 👋 Soy el asistente virtual con IA de Clínica Dental Ruzafa, en pleno barrio de Ruzafa. Te ayudo a pedir cita y con dudas de tratamientos, financiación, horario o cómo llegar.\nYou can also write to me in English. 🇬🇧\n¿En qué te ayudo?",
+        "Hi! 👋 I'm the AI virtual assistant of Clínica Dental Ruzafa, in the heart of Ruzafa (Valencia). I can help you book an appointment and answer questions about treatments, financing, opening hours or how to get here.\nTambién puedes escribirme en español. 🇪🇸\nHow can I help?"),
         LANG === "en" ? [CITA_CHIP, Q("Invisible aligners (Alinea)", "Invisible aligners (Alinea)", "invisible aligners"), Q("Opening hours", "Opening hours", "opening hours"), Q("Dental emergency", "Dental emergency", "dental emergency"), LLAMADA_CHIP]
           : [CITA_CHIP, Q("Ortodoncia invisible Alinea", "", "ortodoncia invisible alinea"), Q("Financiación 0 %", "", "financiacion"), Q("Horario", "", "horario"), LLAMADA_CHIP]);
     }

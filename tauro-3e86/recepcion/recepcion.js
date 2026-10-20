@@ -207,7 +207,7 @@
     panel.classList.add("r24-open"); launch.classList.add("r24-hide"); statusText();
     if (!opened) {
       opened = true;
-      addBot("¡Hola! 👋 Soy la recepción virtual de Clínica Dental Tauro (Carabanchel y Pozuelo). Te ayudo a pedir cita y con dudas de tratamientos, horario o cómo llegar.\n¿En qué te ayudo?",
+      addBot("¡Hola! 👋 Soy el asistente virtual con IA de Clínica Dental Tauro (Carabanchel y Pozuelo). Te ayudo a pedir cita y con dudas de tratamientos, horario o cómo llegar.\n¿En qué te ayudo?",
         [CITA_CHIP, { t: "1ª consulta gratis", q: "primera consulta gratis" }, { t: "Implantes", q: "implantes" }, { t: "Ortodoncia", q: "ortodoncia" }, { t: "Me duele una muela", q: "me duele una muela" }, { t: "Horario y clínicas", q: "horario" }]);
     }
     setTimeout(function () { input.focus(); }, 50);

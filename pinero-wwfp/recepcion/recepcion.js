@@ -244,8 +244,8 @@
     }, true);
   }
   function greet() {
-    addBot(T("¡Hola! 👋 Soy la recepción virtual de Clínica Piñero & Bilbao, tu clínica dental en Los Remedios (Sevilla). Te ayudo a pedir tu primera visita gratuita, con una urgencia o con dudas de tratamientos, financiación y cómo llegar, a cualquier hora.\nYou can also write to me in English. 🇬🇧\n¿En qué te ayudo?",
-      "Hi! 👋 I'm the virtual receptionist of Clínica Piñero & Bilbao, your dental clinic in Los Remedios (Seville). I can help you book your free first visit, with an emergency, or with questions about treatments, financing and how to get here, at any time.\nTambién puedes escribirme en español. 🇪🇸\nHow can I help?"), menuChips());
+    addBot(T("¡Hola! 👋 Soy el asistente virtual con IA de Clínica Piñero & Bilbao, tu clínica dental en Los Remedios (Sevilla). Te ayudo a pedir tu primera visita gratuita, con una urgencia o con dudas de tratamientos, financiación y cómo llegar, a cualquier hora.\nYou can also write to me in English. 🇬🇧\n¿En qué te ayudo?",
+      "Hi! 👋 I'm the AI virtual assistant of Clínica Piñero & Bilbao, your dental clinic in Los Remedios (Seville). I can help you book your free first visit, with an emergency, or with questions about treatments, financing and how to get here, at any time.\nTambién puedes escribirme en español. 🇪🇸\nHow can I help?"), menuChips());
   }
   function open(mode) {
     panel.classList.add("r24-open"); launch.classList.add("r24-hide"); document.documentElement.classList.add("r24-panel-open"); statusText();

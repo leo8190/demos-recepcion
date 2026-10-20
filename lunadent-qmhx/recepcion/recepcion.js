@@ -193,7 +193,7 @@
     panel.classList.add("r24-open"); launch.classList.add("r24-hide"); statusText();
     if (!opened) {
       opened = true;
-      addBot("¡Hola! 👋 Soy la recepción virtual de Lunadent, tu clínica dental familiar en L'Eixample. Te ayudo a pedir cita (la primera visita es gratuita) y con dudas de tratamientos, horario o cómo llegar.\n¿En qué te ayudo?",
+      addBot("¡Hola! 👋 Soy el asistente virtual con IA de Lunadent, tu clínica dental familiar en L'Eixample. Te ayudo a pedir cita (la primera visita es gratuita) y con dudas de tratamientos, horario o cómo llegar.\n¿En qué te ayudo?",
         [CITA_CHIP, { t: "1ª visita gratuita", q: "primera visita gratuita" }, { t: "Implantes", q: "implantes" }, { t: "Horario", q: "horario" }, LLAMADA_CHIP]);
     }
     setTimeout(function () { input.focus(); }, 50);

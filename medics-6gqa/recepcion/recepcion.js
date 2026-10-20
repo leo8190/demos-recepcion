@@ -205,7 +205,7 @@
     panel.classList.add("r24-open"); launch.classList.add("r24-hide"); statusText();
     if (!opened) {
       opened = true;
-      addBot("¡Hola! 👋 Soy la recepción virtual de Clínica Dental Medics Dr. Ferrer (Madrid Chamberí y Murcia). Te ayudo con citas, precios publicados, horario o cómo llegar.\n¿En qué te ayudo?",
+      addBot("¡Hola! 👋 Soy el asistente virtual con IA de Clínica Dental Medics Dr. Ferrer (Madrid Chamberí y Murcia). Te ayudo con citas, precios publicados, horario o cómo llegar.\n¿En qué te ayudo?",
         [CITA_CHIP, { t: "1ª visita gratis", q: "primera visita gratis" }, { t: "Precios Invisalign", q: "precio invisalign" }, { t: "Implantes", q: "implantes" }, { t: "Urgencia", q: "urgencia" }, { t: "Horario y sedes", q: "horario" }]);
     }
     setTimeout(function () { input.focus(); }, 50);
