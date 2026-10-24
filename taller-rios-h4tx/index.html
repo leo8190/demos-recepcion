@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Recepción IA · Taller Hermanos Ríos (demo)</title>
+<style>
+:root{--wa:#075e54;--wa2:#128c7e;--ok:#25d366;--bg:#f3efe7;--card:#fff;--ink:#1d2421;--mute:#6b7570;--red:#e5484d;--amber:#f5a524}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif;background:var(--bg);color:var(--ink);line-height:1.4}
+header{background:var(--wa);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+header h1{font-size:18px;margin:0;flex:1;min-width:200px}
+header small{display:block;font-weight:400;opacity:.85;font-size:13px}
+.tag{background:#ffd666;color:#5a4300;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:700}
+.lang[hidden]{display:none}.lang{display:flex;border:1px solid #fff8;border-radius:99px;overflow:hidden}
+.lang button{background:none;border:0;color:#fff;padding:6px 12px;font-weight:700;cursor:pointer}
+.lang button.on{background:#fff;color:var(--wa)}
+main{max-width:1180px;margin:0 auto;padding:16px}
+h2{font-size:17px;margin:22px 0 10px}
+h2 .n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--wa2);color:#fff;font-size:14px;margin-right:6px}
+.grid{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:860px){.grid{grid-template-columns:1fr 1fr}.grid.chat{grid-template-columns:400px 1fr}}
+.panel{background:var(--card);border-radius:16px;box-shadow:0 2px 10px #0001;overflow:hidden;display:flex;flex-direction:column}
+.panel>.hd{padding:12px 14px;border-bottom:1px solid #eee;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.panel>.hd span{font-weight:400;color:var(--mute);font-size:13px}
+/* teléfono */
+.phone{background:#e5ddd5;height:640px;max-height:80vh}
+.wa-top{background:var(--wa);color:#fff;padding:10px 12px;display:flex;align-items:center;gap:10px}
+.av{width:36px;height:36px;border-radius:50%;background:#dfe5e3;display:grid;place-items:center;font-size:20px}
+.wa-top b{display:block;font-size:15px}.wa-top i{font-style:normal;font-size:12px;opacity:.85}
+.msgs{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:6px;
+ background-image:radial-gradient(#0000000a 1px,transparent 1px);background-size:14px 14px}
+.b{max-width:84%;padding:7px 10px;border-radius:10px;font-size:14.5px;box-shadow:0 1px 1px #0002;white-space:pre-wrap;animation:pop .25s ease}
+.b.cli{align-self:flex-end;background:#dcf8c6;border-top-right-radius:2px}
+.b.bot{align-self:flex-start;background:#fff;border-top-left-radius:2px}
+.b.bot .lb{display:block;font-size:11px;color:var(--wa2);font-weight:700;margin-bottom:2px}
+.b.sys{align-self:center;background:#e1f2fb;color:#3b5560;font-size:12px;box-shadow:none}
+.b.img .ph{width:190px;height:120px;border-radius:8px;background:linear-gradient(135deg,#9aa7a0,#5f6f67);display:grid;place-items:center;color:#fff;font-size:34px}
+.b.img small{display:block;font-size:11px;color:var(--mute);margin-top:3px}
+.typing{align-self:flex-start;background:#fff;border-radius:10px;padding:8px 12px;font-size:20px;letter-spacing:2px;color:#999}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:none;opacity:1}}
+.quick{display:flex;gap:6px;padding:8px;background:#f0f0f0;border-top:1px solid #ddd}
+.quick button{flex:1;border:1px solid var(--wa2);background:#fff;color:var(--wa);border-radius:99px;padding:9px 6px;font-weight:700;font-size:13.5px;cursor:pointer}
+.quick button:active{background:#e8f5f1}
+.inp{display:flex;gap:8px;padding:8px;background:#f0f0f0}
+.inp div{flex:1;background:#fff;border-radius:99px;padding:9px 14px;color:#999;font-size:14px}
+.inp span{width:38px;height:38px;border-radius:50%;background:var(--wa2);display:grid;place-items:center;color:#fff}
+/* dueño */
+.owner{background:#111b21;color:#e9edef;min-height:300px}
+.owner .hd{border-color:#2a3942}.owner .hd span{color:#8696a0}
+.feed{padding:14px;display:flex;flex-direction:column;gap:12px;flex:1}
+.card{border-radius:12px;padding:12px 14px;white-space:pre-wrap;font-size:14.5px;animation:pop .3s ease;background:#202c33;border-left:5px solid var(--ok)}
+.card.alerta{border-left-color:var(--red);background:#3a1d20;box-shadow:0 0 0 2px #e5484d55}
+.card.llamada{border-left-color:var(--amber)}
+.empty{color:#8696a0;font-size:14px;text-align:center;margin:auto;padding:30px}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0}
+.ctrl button{border:0;background:var(--wa2);color:#fff;padding:9px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+.ctrl button.sec{background:#fff;color:var(--wa);border:1px solid var(--wa2)}
+.rules{font-size:13.5px;color:var(--mute);margin:10px 2px 0;padding-left:18px}
+/* bandeja */
+.inbox{max-height:640px;overflow-y:auto}
+.row{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid #f0f0f0;align-items:flex-start}
+.row.filt{opacity:.55}
+.row .ic{font-size:20px;width:26px;text-align:center}
+.row .bd{flex:1;min-width:0}
+.row .tp{display:flex;justify-content:space-between;gap:6px;font-size:13px}
+.row .tp b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .tx{font-size:14px;margin-top:2px}
+.row .mt{font-size:11.5px;color:var(--mute);margin-top:4px;display:none}
+.showwhy .row .mt{display:block}
+.pill{font-size:11px;font-weight:700;border-radius:99px;padding:2px 8px;white-space:nowrap}
+.pill.u{background:#fde2e2;color:#b4232a}.pill.f{background:#eceff1;color:#56636a}
+.stats{display:flex;gap:10px;padding:12px 14px;flex-wrap:wrap}
+.stat{flex:1;min-width:110px;background:#f6f8f7;border-radius:12px;padding:10px;text-align:center}
+.stat b{display:block;font-size:28px}.stat.u b{color:var(--red)}.stat.f b{color:var(--wa2)}
+.aviso{margin:4px 14px 14px;background:#dcf8c6;border-radius:10px;padding:10px 12px;white-space:pre-wrap;font-size:14.5px;box-shadow:0 1px 1px #0002}
+.toggle{font-size:13px;color:var(--wa);cursor:pointer;background:none;border:0;font-weight:700}
+footer{text-align:center;color:var(--mute);font-size:12.5px;padding:20px}
+/* modo video */
+.video header .lang,.video #sec2,.video footer,.video .ctrl,.video .rules{display:none}
+.still *{animation:none!important}.video main{padding:10px}.video h2{margin:6px 0 8px}
+</style>
+</head>
+<body>
+<header>
+ <div class="av">🤖</div>
+ <h1 data-i="title"></h1>
+ <span class="tag" data-i="tag"></span>
+ <div class="lang" id="lang" hidden><button data-l="es">ES</button><button data-l="en">EN</button></div>
+</header>
+<main>
+ <section id="sec1">
+  <h2><span class="n">1</span><span data-i="s1"></span></h2>
+  <div class="grid chat">
+   <div class="panel phone">
+    <div class="wa-top"><div class="av">🚗</div><div><b>Taller Hermanos Ríos</b><i data-i="online"></i></div></div>
+    <div class="msgs" id="msgs"></div>
+    <div class="quick"><button id="qCall" data-i="call"></button><button id="qHuman" data-i="human"></button></div>
+    <div class="inp"><div data-i="write"></div><span>🎤</span></div>
+   </div>
+   <div class="panel owner">
+    <div class="hd"><div data-i="ownerTitle"></div><span data-i="ownerSub"></span></div>
+    <div class="feed" id="feed"><div class="empty" data-i="empty"></div></div>
+   </div>
+  </div>
+  <div class="ctrl"><button id="replay" data-i="replay"></button><button class="sec" id="skip" data-i="skip"></button></div>
+  <ul class="rules" id="rules"></ul>
+ </section>
+ <section id="sec2">
+  <h2><span class="n">2</span><span data-i="s2"></span></h2>
+  <div class="grid">
+   <div class="panel" id="inboxPanel">
+    <div class="hd"><div data-i="inboxTitle"></div><button class="toggle" id="why" data-i="why"></button></div>
+    <div class="inbox" id="inbox"></div>
+   </div>
+   <div class="panel">
+    <div class="hd"><div data-i="getsTitle"></div><span data-i="getsSub"></span></div>
+    <div class="stats"><div class="stat"><b id="sT"></b><span data-i="total"></span></div><div class="stat u"><b id="sU"></b><span data-i="urg"></span></div><div class="stat f"><b id="sF"></b><span data-i="filt"></span></div></div>
+    <div class="aviso" id="aviso"></div>
+   </div>
+  </div>
+ </section>
+</main>
+<footer data-i="foot"></footer>
+<script>
+const D = {"defaultLang": "es", "bilingual": true, "ui": {"title": {"es": "Recepción IA · Taller Hermanos Ríos (demo)", "en": "AI Receptionist · Hermanos Ríos Auto Shop (demo)"}, "tag": {"es": "DEMO · datos de ejemplo", "en": "DEMO · sample data"}, "s1": {"es": "El asistente atiende WhatsApp fuera de horario", "en": "The assistant answers WhatsApp after hours"}, "online": {"es": "asistente virtual con IA · en línea", "en": "AI virtual assistant · online"}, "call": {"es": "📲 Que me llamen", "en": "📲 Call me back"}, "human": {"es": "👤 Hablar con una persona", "en": "👤 Talk to a person"}, "callReply": {"es": "Con gusto. Le aviso al taller para que lo llamen lo antes posible 📲", "en": "Of course. I'll let the shop know to call you as soon as possible 📲"}, "callOwner": {"es": "📲 *Pedido de llamada*\nUn cliente pidió que lo llamen. Número del chat.", "en": "📲 *Callback request*\nA customer asked to be called. Number from the chat."}, "humanReply": {"es": "Enseguida lo comunico con una persona del taller 👤", "en": "I'll connect you with someone from the shop right away 👤"}, "humanOwner": {"es": "👤 *Quiere hablar con una persona*\nResponda por este mismo chat.", "en": "👤 *Wants to talk to a person*\nReply in this same chat."}, "write": {"es": "Escriba un mensaje", "en": "Type a message"}, "botLabel": {"es": "Asistente virtual (IA)", "en": "AI virtual assistant"}, "ownerTitle": {"es": "📱 Lo que le llega a Don Ramón", "en": "📱 What Don Ramón receives"}, "ownerSub": {"es": "solo solicitudes listas y urgencias", "en": "only ready requests and emergencies"}, "empty": {"es": "Todavía nada. Don Ramón descansa tranquilo 😴", "en": "Nothing yet. Don Ramón can rest easy 😴"}, "replay": {"es": "▶ Ver de nuevo", "en": "▶ Replay"}, "skip": {"es": "⏭ Ver todo", "en": "⏭ Show all"}, "rules": {"es": ["Siempre se presenta como asistente virtual con IA.", "No da precios ni inventa horarios: lo que no sabe, lo pasa a una persona.", "Los botones «📲 Que me llamen» y «👤 Hablar con una persona» siempre están visibles.", "Al dueño solo le llega la solicitud lista o la urgencia."], "en": ["It always introduces itself as an AI virtual assistant.", "It never quotes prices or makes up hours: anything it doesn't know goes to a person.", "The «📲 Call me back» and «👤 Talk to a person» buttons are always visible.", "The owner only gets ready requests and emergencies."]}, "s2": {"es": "Un día de mensajes: qué filtra y qué le avisa", "en": "One day of messages: what gets filtered and what you get"}, "inboxTitle": {"es": "📥 Bandeja completa (21 mensajes de ejemplo)", "en": "📥 Full inbox (21 sample messages)"}, "why": {"es": "Ver por qué", "en": "Show why"}, "getsTitle": {"es": "🔔 Lo que le llega", "en": "🔔 What you get"}, "getsSub": {"es": "un solo aviso, corto", "en": "one short alert"}, "total": {"es": "mensajes", "en": "messages"}, "urg": {"es": "urgentes", "en": "urgent"}, "filt": {"es": "filtrados", "en": "filtered"}, "pillU": {"es": "URGENTE", "en": "URGENT"}, "pillF": {"es": "filtrado", "en": "filtered"}, "cat": {"es": "Categoría", "en": "Category"}, "score": {"es": "Puntaje", "en": "Score"}, "foot": {"es": "Demo de Recepción IA · Taller ficticio · Todos los mensajes y teléfonos son de ejemplo · Sin conexión a WhatsApp real", "en": "AI Receptionist demo · Fictional shop · All messages and phone numbers are samples · Not connected to real WhatsApp"}}, "chat": [{"t": "sys", "es": "Domingo 10:15 p. m. · taller cerrado", "en": "Sunday 10:15 PM · shop closed"}, {"t": "cli", "es": "Buenas noches, ¿atienden mañana? Mi carro hace un ruido al frenar", "en": "Good evening, are you open tomorrow? My car makes a noise when braking"}, {"t": "bot", "es": "¡Buenas noches! 👋 Soy el asistente virtual con IA del Taller Hermanos Ríos. En este momento el taller está cerrado, pero tomo sus datos y se los dejo listos a Don Ramón. ¿Qué vehículo tiene? (marca, modelo y año)", "en": "Good evening! 👋 I'm the AI virtual assistant for Hermanos Ríos Auto Shop. We're closed right now, but I'll take your details and have them ready for Don Ramón. What vehicle do you have? (make, model and year)"}, {"t": "cli", "es": "Honda Civic 2016", "en": "2016 Honda Civic"}, {"t": "bot", "es": "Gracias. Cuénteme el síntoma: ¿cuándo pasa y cómo suena?", "en": "Thank you. Tell me the symptom: when does it happen and what does it sound like?"}, {"t": "cli", "es": "Al frenar chilla, sobre todo en la mañana", "en": "It squeals when braking, especially in the morning"}, {"t": "bot", "es": "Entendido. Si puede, envíe una foto de la llanta o del tablero si hay alguna luz encendida 📷", "en": "Got it. If you can, send a photo of the wheel, or of the dashboard if any light is on 📷"}, {"t": "img", "es": "foto_llanta.jpg", "en": "wheel_photo.jpg"}, {"t": "bot", "es": "Recibida. ¿Qué día le conviene traerlo?", "en": "Received. What day works for you to bring it in?"}, {"t": "cli", "es": "El martes. ¿Cuánto cuesta cambiar las pastillas?", "en": "Tuesday. How much to replace the brake pads?"}, {"t": "bot", "es": "El precio se lo da el mecánico después de revisar el vehículo; no quiero darle un número equivocado. ¿A qué teléfono lo podemos llamar?", "en": "The mechanic will give you the price after inspecting the vehicle; I don't want to give you a wrong number. What phone number can we call you at?"}, {"t": "cli", "es": "(832) 555-0142", "en": "(832) 555-0142"}, {"t": "bot", "es": "¡Listo! ✅ Su solicitud quedó registrada. Una persona del taller le confirmará la hora del martes.", "en": "All set! ✅ Your request is logged. Someone from the shop will confirm your Tuesday time."}, {"t": "owner_pedido", "es": "📝 *Solicitud lista* · dom 10:21 p. m.\n🚗 Honda Civic 2016\n🔧 Chillido al frenar (sobre todo en la mañana)\n📷 Foto adjunta\n📅 Día: martes\n📞 (832) 555-0142\n⏳ Pendiente: cotizar y confirmar hora", "en": "📝 *Request ready* · Sun 10:21 PM\n🚗 2016 Honda Civic\n🔧 Squeal when braking (mostly mornings)\n📷 Photo attached\n📅 Day: Tuesday\n📞 (832) 555-0142\n⏳ Pending: quote and confirm time"}, {"t": "sys", "es": "Otro cliente · 11:40 p. m.", "en": "Another customer · 11:40 PM"}, {"t": "cli", "es": "Me quedé tirado en la 290, el carro no prende y estoy con mis hijos", "en": "I'm stranded on the 290, the car won't start and I have my kids with me"}, {"t": "bot", "es": "Lamento la situación. Si está en un lugar peligroso, llame al 911. Ya envié una alerta urgente al taller. ¿Me confirma su teléfono y dónde está?", "en": "I'm sorry about that. If you're somewhere unsafe, call 911. I've already sent an urgent alert to the shop. Can you confirm your phone and location?"}, {"t": "cli", "es": "(713) 555-0199, salida 13 de la 290", "en": "(713) 555-0199, 290 exit 13"}, {"t": "owner_alerta", "es": "🚨 *URGENTE* · dom 11:41 p. m.\nCliente varado en la 290, salida 13 (con niños)\n🚗 No arranca\n📞 (713) 555-0199\n➡️ Llamar ya / coordinar grúa", "en": "🚨 *URGENT* · Sun 11:41 PM\nCustomer stranded on 290, exit 13 (with kids)\n🚗 Won't start\n📞 (713) 555-0199\n➡️ Call now / arrange tow"}, {"t": "bot", "es": "Listo, el aviso urgente ya le llegó al taller 🚨 También puede tocar «👤 Hablar con una persona».", "en": "Done, the urgent alert has reached the shop 🚨 You can also tap «👤 Talk to a person»."}], "results": [{"id": 1, "hora": "06:50", "de": "Miguel R.", "tipo": "texto", "es": "Buenos días, me quedé tirado en la I-45 salida 48, el carro no prende y sale humo del cofre. ¿Tienen grúa o me pueden ayudar?", "en": "Good morning, I'm stranded on I-45 exit 48, the car won't start and there's smoke from the hood. Do you have a tow truck or can you help?", "categoria": "emergencia", "puntaje": 7, "urgente": true, "motivo": "emergencia: «tirado»", "resumen": "Me quedé tirado en la I-45 salida 48, el carro no prende y sale humo del cofre. ¿Tienen grúa o…", "resumen_en": "I'm stranded on I-45 exit 48, the car won't start and there's smoke from the hood. Do you have…"}, {"id": 2, "hora": "07:05", "de": "Unknown", "tipo": "texto", "es": "¿A qué hora abren hoy?", "en": "What time do you open today?", "categoria": "consulta", "puntaje": 2, "urgente": false, "motivo": "consulta: «a que hora»; +2 «bhoyb»", "resumen": "¿A qué hora abren hoy?", "resumen_en": "What time do you open today?"}, {"id": 3, "hora": "07:20", "de": "AutoParts Supply (proveedor)", "tipo": "texto", "es": "Buen día, las pastillas de freno para la Silverado llegan el jueves, no el martes. Disculpe la demora.", "en": "Good morning, the brake pads for the Silverado arrive Thursday, not Tuesday. Sorry for the delay.", "categoria": "proveedor", "puntaje": 1, "urgente": false, "motivo": "proveedor: «llegan el»", "resumen": "Las pastillas de freno para la Silverado llegan el jueves, no el martes. Disculpe la demora", "resumen_en": "The brake pads for the Silverado arrive Thursday, not Tuesday. Sorry for the delay"}, {"id": 4, "hora": "07:31", "de": "+1 (832) •••-4410", "tipo": "texto", "es": "¡FELICIDADES! Ganó una tarjeta de regalo de $500. Haga clic aquí: bit.ly/xxxx", "en": "CONGRATS! You won a $500 gift card. Click here: bit.ly/xxxx", "categoria": "spam", "puntaje": -20, "urgente": false, "motivo": "spam: «felicidades»", "resumen": "¡FELICIDADES! Ganó una tarjeta de regalo de $500. Haga clic aquí: bit.ly/xxxx", "resumen_en": "CONGRATS! You won a $500 gift card. Click here: bit.ly/xxxx"}, {"id": 5, "hora": "07:45", "de": "Rosa M.", "tipo": "audio", "es": "[Audio transcrito 0:40] Hola, mi camioneta Toyota hace un ruido feo cuando freno, como metal con metal. ¿Me la pueden revisar esta semana?", "en": "[Transcribed audio 0:40] Hi, my Toyota truck makes an ugly noise when I brake, like metal on metal. Can you check it this week?", "categoria": "emergencia", "puntaje": 10, "urgente": true, "motivo": "emergencia: «metal con metal»; +3 «ruido feo|metal con metal»; audio transcrito", "resumen": "Mi camioneta Toyota hace un ruido feo cuando freno, como metal con metal. ¿Me la pueden…", "resumen_en": "My Toyota truck makes an ugly noise when I brake, like metal on metal. Can you check it this…"}, {"id": 6, "hora": "08:02", "de": "José L.", "tipo": "texto", "es": "¿Cuánto cuesta un cambio de aceite para un Corolla 2018?", "en": "How much is an oil change for a 2018 Corolla?", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «cuanto (cuesta|cobran)»", "resumen": "¿Cuánto cuesta un cambio de aceite para un Corolla 2018?", "resumen_en": "How much is an oil change for a 2018 Corolla?"}, {"id": 7, "hora": "08:15", "de": "Unknown", "tipo": "texto", "es": "¿Trabajan los domingos?", "en": "Are you open on Sundays?", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «trabajan»", "resumen": "¿Trabajan los domingos?", "resumen_en": "Are you open on Sundays?"}, {"id": 8, "hora": "08:30", "de": "Daniel P.", "tipo": "texto", "es": "Ayer me cambiaron los frenos y hoy el pedal se va hasta el fondo. Estoy molesto, no me siento seguro manejando así.", "en": "You replaced my brakes yesterday and today the pedal goes all the way down. I'm upset, I don't feel safe driving like this.", "categoria": "emergencia", "puntaje": 14, "urgente": true, "motivo": "emergencia: «pedal se va»; reclamo: «molest»; +2 «bhoyb»", "resumen": "Ayer me cambiaron los frenos y hoy el pedal se va hasta el fondo. Estoy molesto, no me siento…", "resumen_en": "You replaced my brakes yesterday and today the pedal goes all the way down. I'm upset, I don't…"}, {"id": 9, "hora": "08:44", "de": "Flota Limpieza Express", "tipo": "texto", "es": "Tenemos 6 vans Ford Transit para servicio de mantenimiento. ¿Podemos agendar para el lunes 2? Necesitamos confirmación hoy.", "en": "We have 6 Ford Transit vans for maintenance service. Can we schedule for Monday the 2nd? We need confirmation today.", "categoria": "pedido_grande", "puntaje": 7, "urgente": true, "motivo": "pedido_grande: «d+s*(vans|camionetas|unidades|carros)»; +2 «bhoyb»; +2 «confirmacion hoy»", "resumen": "Tenemos 6 vans Ford Transit para servicio de mantenimiento. ¿Podemos agendar para el lunes 2?…", "resumen_en": "We have 6 Ford Transit vans for maintenance service. Can we schedule for Monday the 2nd? We…"}, {"id": 10, "hora": "09:00", "de": "Don Ernesto", "tipo": "audio", "es": "[Audio transcrito 1:05] Hola mijo, soy Ernesto. Nada urgente, quería saber si revisan el aire acondicionado, ya no enfría tanto. Paso cuando pueda. Saludos a la familia.", "en": "[Transcribed audio 1:05] Hi son, it's Ernesto. Nothing urgent, wanted to know if you check A/C, it's not cooling as much. I'll stop by when I can. Regards to the family.", "categoria": "consulta", "puntaje": -5, "urgente": false, "motivo": "+2 «urgente»; -5 «nada urgente»; -2 «cuando pueda»; audio transcrito", "resumen": "Soy Ernesto. Nada urgente, quería saber si revisan el aire acondicionado, ya no enfría tanto…", "resumen_en": "It's Ernesto. Nothing urgent, wanted to know if you check A/C, it's not cooling as much. I'll…"}, {"id": 11, "hora": "09:12", "de": "Laura G.", "tipo": "texto", "es": "Se me prendió la luz del motor y la temperatura está en rojo. Estoy en el estacionamiento del H-E-B, ¿lo puedo manejar hasta allá?", "en": "My check engine light came on and the temperature gauge is in the red. I'm at the H-E-B parking lot, can I drive it over?", "categoria": "emergencia", "puntaje": 7, "urgente": true, "motivo": "emergencia: «en rojo»", "resumen": "Se me prendió la luz del motor y la temperatura está en rojo. Estoy en el estacionamiento del…", "resumen_en": "My check engine light came on and the temperature gauge is in the red. I'm at the H-E-B…"}, {"id": 12, "hora": "09:25", "de": "Proveedor Llantas TX", "tipo": "texto", "es": "Le envío la nueva lista de precios de llantas, vigente desde el lunes.", "en": "Sending you the new tire price list, effective Monday.", "categoria": "proveedor", "puntaje": 1, "urgente": false, "motivo": "proveedor: «lista de precios»", "resumen": "Le envío la nueva lista de precios de llantas, vigente desde el lunes", "resumen_en": "Sending you the new tire price list, effective Monday"}, {"id": 13, "hora": "09:40", "de": "Kevin", "tipo": "texto", "es": "¿Hacen alineación y balanceo?", "en": "Do you do alignment and balancing?", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «hacen »", "resumen": "¿Hacen alineación y balanceo?", "resumen_en": "Do you do alignment and balancing?"}, {"id": 14, "hora": "09:55", "de": "+1 (713) •••-0021", "tipo": "texto", "es": "Ofrecemos marketing digital para talleres, primer mes gratis. Responda SÍ.", "en": "We offer digital marketing for auto shops, first month free. Reply YES.", "categoria": "spam", "puntaje": -20, "urgente": false, "motivo": "spam: «primer mes gratis»", "resumen": "Ofrecemos marketing digital para talleres, primer mes gratis. Responda SÍ", "resumen_en": "We offer digital marketing for auto shops, first month free. Reply YES"}, {"id": 15, "hora": "10:10", "de": "Patricia", "tipo": "texto", "es": "Gracias por el servicio de ayer, el carro quedó como nuevo 🙌", "en": "Thanks for yesterday's service, the car runs like new 🙌", "categoria": "info", "puntaje": 0, "urgente": false, "motivo": "info: «gracias»", "resumen": "Gracias por el servicio de ayer, el carro quedó como nuevo 🙌", "resumen_en": "Thanks for yesterday's service, the car runs like new 🙌"}, {"id": 16, "hora": "10:22", "de": "Carlos V.", "tipo": "texto", "es": "Choqué por detrás, la defensa quedó colgando y pierde líquido verde. ¿Me pueden atender hoy?", "en": "I got rear-ended, the bumper is hanging and it's leaking green fluid. Can you see me today?", "categoria": "emergencia", "puntaje": 9, "urgente": true, "motivo": "emergencia: «pierde liquido»; +2 «bhoyb»", "resumen": "Choqué por detrás, la defensa quedó colgando y pierde líquido verde. ¿Me pueden atender hoy?", "resumen_en": "I got rear-ended, the bumper is hanging and it's leaking green fluid. Can you see me today?"}, {"id": 17, "hora": "10:35", "de": "Ana", "tipo": "texto", "es": "¿Cuánto cobran por diagnóstico con escáner?", "en": "How much do you charge for a scanner diagnostic?", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «cuanto (cuesta|cobran)»", "resumen": "¿Cuánto cobran por diagnóstico con escáner?", "resumen_en": "How much do you charge for a scanner diagnostic?"}, {"id": 18, "hora": "10:50", "de": "Grupo vecinos", "tipo": "texto", "es": "Reenviado: cierre de la calle Airline mañana por obras.", "en": "Forwarded: Airline St closed tomorrow for roadwork.", "categoria": "info", "puntaje": 0, "urgente": false, "motivo": "info: «reenviado»", "resumen": "Reenviado: cierre de la calle Airline mañana por obras", "resumen_en": "Forwarded: Airline St closed tomorrow for roadwork"}, {"id": 19, "hora": "11:05", "de": "Marcos", "tipo": "audio", "es": "[Audio transcrito 0:30] Oiga, ¿me puede cotizar una transmisión para una Honda Odyssey 2015? Sin prisa, para el mes que viene.", "en": "[Transcribed audio 0:30] Hey, can you quote me a transmission for a 2015 Honda Odyssey? No rush, for next month.", "categoria": "consulta", "puntaje": -4, "urgente": false, "motivo": "consulta: «cotizar»; -4 «sin prisa»; audio transcrito", "resumen": "¿me puede cotizar una transmisión para una Honda Odyssey 2015? Sin prisa, para el mes que viene", "resumen_en": "Can you quote me a transmission for a 2015 Honda Odyssey? No rush, for next month"}, {"id": 20, "hora": "11:20", "de": "Unknown", "tipo": "texto", "es": "¿Aceptan citas por WhatsApp?", "en": "Do you take appointments through WhatsApp?", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «aceptan»", "resumen": "¿Aceptan citas por WhatsApp?", "resumen_en": "Do you take appointments through WhatsApp?"}, {"id": 21, "hora": "11:34", "de": "Sandra", "tipo": "texto", "es": "Dejé mi carro el lunes y nadie me ha llamado, necesito saber hoy si está listo porque lo uso para trabajar.", "en": "I dropped my car Monday and nobody has called me, I need to know today if it's ready because I use it for work.", "categoria": "reclamo", "puntaje": 8, "urgente": true, "motivo": "reclamo: «nadie me ha llamado»; +2 «bhoyb»; +1 «lo uso para trabajar»", "resumen": "Dejé mi carro el lunes y nadie me ha llamado, necesito saber hoy si está listo porque lo uso…", "resumen_en": "I dropped my car Monday and nobody has called me, I need to know today if it's ready because I…"}], "aviso": {"es": "🔔 *Recepción IA · Taller Hermanos Ríos*\nDe 21 mensajes, 7 necesitan su atención:\n🚨 08:30 · Daniel P.: Ayer me cambiaron los frenos y hoy el pedal se va hasta el fondo. Estoy molesto, no me siento… → _Llamar ya_\n🚨 07:45 · Rosa M.: Mi camioneta Toyota hace un ruido feo cuando freno, como metal con metal. ¿Me la pueden… → _Llamar ya_\n🚨 10:22 · Carlos V.: Choqué por detrás, la defensa quedó colgando y pierde líquido verde. ¿Me pueden atender hoy? → _Llamar ya_\n🚨 06:50 · Miguel R.: Me quedé tirado en la I-45 salida 48, el carro no prende y sale humo del cofre. ¿Tienen grúa o… → _Llamar ya_\n🚨 09:12 · Laura G.: Se me prendió la luz del motor y la temperatura está en rojo. Estoy en el estacionamiento del… → _Llamar ya_\n😠 11:34 · Sandra: Dejé mi carro el lunes y nadie me ha llamado, necesito saber hoy si está listo porque lo uso… → _Responder hoy_\n📦 08:44 · Flota Limpieza Express: Tenemos 6 vans Ford Transit para servicio de mantenimiento. ¿Podemos agendar para el lunes 2?… → _Confirmar hoy_\n✅ Los otros 14 (consultas, saludos, proveedores y spam) quedaron atendidos o anotados.", "en": "🔔 *AI Receptionist · Hermanos Ríos Auto Shop*\nOut of 21 messages, 7 need your attention:\n🚨 08:30 · Daniel P.: You replaced my brakes yesterday and today the pedal goes all the way down. I'm upset, I don't… → _Call now_\n🚨 07:45 · Rosa M.: My Toyota truck makes an ugly noise when I brake, like metal on metal. Can you check it this… → _Call now_\n🚨 10:22 · Carlos V.: I got rear-ended, the bumper is hanging and it's leaking green fluid. Can you see me today? → _Call now_\n🚨 06:50 · Miguel R.: I'm stranded on I-45 exit 48, the car won't start and there's smoke from the hood. Do you have… → _Call now_\n🚨 09:12 · Laura G.: My check engine light came on and the temperature gauge is in the red. I'm at the H-E-B… → _Call now_\n😠 11:34 · Sandra: I dropped my car Monday and nobody has called me, I need to know today if it's ready because I… → _Reply today_\n📦 08:44 · Flota Limpieza Express: We have 6 Ford Transit vans for maintenance service. Can we schedule for Monday the 2nd? We… → _Confirm today_\n✅ The other 14 (questions, greetings, suppliers and spam) were handled or logged."}, "labels": {"emergencia": ["🚨", "Emergencia", "Emergency", "Llamar ya", "Call now"], "reclamo": ["😠", "Reclamo", "Complaint", "Responder hoy", "Reply today"], "pedido_grande": ["📦", "Pedido grande con fecha", "Large order with date", "Confirmar hoy", "Confirm today"], "proveedor": ["🚚", "Proveedor", "Supplier", "Revisar", "Review"], "consulta": ["❓", "Consulta (precio/stock/horario)", "Question (price/stock/hours)", "Lo contesta el bot", "Bot answers"], "info": ["💬", "Informativo / saludo", "Info / greeting", "Nada", "None"], "spam": ["🗑️", "Spam", "Spam", "Ignorado", "Ignored"]}};
+const qs = new URLSearchParams(location.search);
+let L = qs.get("lang") || D.defaultLang;
+if (qs.get("video")) document.body.classList.add("video");
+if (qs.has("step")) document.body.classList.add("still");
+const t = k => (D.ui[k] && (D.ui[k][L] || D.ui[k].es)) || "";
+const tx = o => o[L] || o.es;
+const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])).replace(/\*(.+?)\*/g,"<b>$1</b>").replace(/(\s)_([^_\n]+)_(?=\s|$)/g,"$1<i>$2</i>");
+const $ = id => document.getElementById(id);
+let timers = [], step = 0;
+
+function paintUI(){
+  document.documentElement.lang = L;
+  document.querySelectorAll("[data-i]").forEach(el => el.textContent = t(el.dataset.i));
+  document.title = t("title");
+  $("rules").innerHTML = (D.ui.rules[L]||D.ui.rules.es).map(r=>"<li>"+r+"</li>").join("");
+  if (D.bilingual){ $("lang").hidden = false; $("lang").querySelectorAll("button").forEach(b=>b.classList.toggle("on", b.dataset.l===L)); }
+  renderInbox();
+}
+function bubble(ev){
+  const m = $("msgs"), f = $("feed");
+  if (ev.t.startsWith("owner")) {
+    const e = f.querySelector(".empty"); if (e) e.remove();
+    const c = document.createElement("div");
+    c.className = "card " + (ev.t==="owner_alerta"?"alerta":ev.t==="owner_llamada"?"llamada":"");
+    c.innerHTML = esc(tx(ev)); f.prepend(c); return;
+  }
+  const b = document.createElement("div"); b.className = "b " + ev.t;
+  if (ev.t==="img") b.innerHTML = '<div class="ph">📷</div><small>'+esc(tx(ev))+'</small>';
+  else b.innerHTML = (ev.t==="bot"?'<span class="lb">🤖 '+t("botLabel")+'</span>':"") + esc(tx(ev));
+  m.appendChild(b); m.scrollTop = m.scrollHeight;
+}
+function reset(){ timers.forEach(clearTimeout); timers=[]; step=0; $("msgs").innerHTML=""; $("feed").innerHTML='<div class="empty">'+t("empty")+'</div>'; }
+function play(fast){
+  reset();
+  const n = qs.has("step") ? +qs.get("step") : (fast ? D.chat.length : 0);
+  for (; step < n && step < D.chat.length; step++) bubble(D.chat[step]);
+  $("msgs").scrollTop = 1e6;
+  if (qs.has("step") || fast) return;
+  let acc = 400;
+  for (let i = step; i < D.chat.length; i++){
+    const ev = D.chat[i];
+    const wait = ev.t==="bot" ? 1300 : ev.t==="sys" ? 700 : 1000;
+    if (ev.t==="bot") timers.push(setTimeout(()=>{const ty=document.createElement("div");ty.className="typing";ty.id="ty";ty.textContent="•••";$("msgs").appendChild(ty);$("msgs").scrollTop=1e6;}, acc));
+    acc += wait;
+    timers.push(setTimeout(()=>{const ty=$("ty"); if(ty) ty.remove(); bubble(ev); step=i+1;}, acc));
+  }
+}
+function quick(kind){
+  bubble({t:"cli", es:t(kind)});
+  timers.push(setTimeout(()=>{ bubble({t:"bot", es:t(kind+"Reply")}); bubble({t:"owner_llamada", es:t(kind+"Owner")}); }, 700));
+}
+function renderInbox(){
+  const R = D.results; let u=0;
+  $("inbox").innerHTML = R.map(r=>{ if(r.urgente) u++;
+    const res = L==="en" && r.en ? r.en : (r.texto || r.es);
+    return `<div class="row ${r.urgente?"":"filt"}"><div class="ic">${D.labels[r.categoria][0]}</div><div class="bd">
+     <div class="tp"><b>${r.de}</b><span>${r.hora} <span class="pill ${r.urgente?"u":"f"}">${r.urgente?t("pillU"):t("pillF")}</span></span></div>
+     <div class="tx">${r.tipo==="audio"?"🎙️ ":""}${esc(res)}</div>
+     <div class="mt">${t("cat")}: ${D.labels[r.categoria][L==="en"?2:1]} · ${t("score")}: ${r.puntaje} · ${esc(r.motivo)}</div></div></div>`}).join("");
+  $("sT").textContent=R.length; $("sU").textContent=u; $("sF").textContent=R.length-u;
+  $("aviso").innerHTML = esc(D.aviso[L] || D.aviso.es);
+}
+$("replay").onclick = ()=>{ qs.delete("step"); play(false); };
+$("skip").onclick = ()=>{ qs.delete("step"); play(true); };
+$("qCall").onclick = ()=>quick("call");
+$("qHuman").onclick = ()=>quick("human");
+$("why").onclick = ()=>$("inboxPanel").classList.toggle("showwhy");
+$("lang").querySelectorAll("button").forEach(b=>b.onclick=()=>{ L=b.dataset.l; paintUI(); play(true); });
+paintUI(); play(false);
+</script>
+</body>
+</html>
