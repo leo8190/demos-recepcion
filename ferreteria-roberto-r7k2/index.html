@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Recepción IA · Ferretería Roberto (demo)</title>
+<style>
+:root{--wa:#075e54;--wa2:#128c7e;--ok:#25d366;--bg:#f3efe7;--card:#fff;--ink:#1d2421;--mute:#6b7570;--red:#e5484d;--amber:#f5a524}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif;background:var(--bg);color:var(--ink);line-height:1.4}
+header{background:var(--wa);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+header h1{font-size:18px;margin:0;flex:1;min-width:200px}
+header small{display:block;font-weight:400;opacity:.85;font-size:13px}
+.tag{background:#ffd666;color:#5a4300;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:700}
+.lang[hidden]{display:none}.lang{display:flex;border:1px solid #fff8;border-radius:99px;overflow:hidden}
+.lang button{background:none;border:0;color:#fff;padding:6px 12px;font-weight:700;cursor:pointer}
+.lang button.on{background:#fff;color:var(--wa)}
+main{max-width:1180px;margin:0 auto;padding:16px}
+h2{font-size:17px;margin:22px 0 10px}
+h2 .n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--wa2);color:#fff;font-size:14px;margin-right:6px}
+.grid{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:860px){.grid{grid-template-columns:1fr 1fr}.grid.chat{grid-template-columns:400px 1fr}}
+.panel{background:var(--card);border-radius:16px;box-shadow:0 2px 10px #0001;overflow:hidden;display:flex;flex-direction:column}
+.panel>.hd{padding:12px 14px;border-bottom:1px solid #eee;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.panel>.hd span{font-weight:400;color:var(--mute);font-size:13px}
+/* teléfono */
+.phone{background:#e5ddd5;height:640px;max-height:80vh}
+.wa-top{background:var(--wa);color:#fff;padding:10px 12px;display:flex;align-items:center;gap:10px}
+.av{width:36px;height:36px;border-radius:50%;background:#dfe5e3;display:grid;place-items:center;font-size:20px}
+.wa-top b{display:block;font-size:15px}.wa-top i{font-style:normal;font-size:12px;opacity:.85}
+.msgs{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:6px;
+ background-image:radial-gradient(#0000000a 1px,transparent 1px);background-size:14px 14px}
+.b{max-width:84%;padding:7px 10px;border-radius:10px;font-size:14.5px;box-shadow:0 1px 1px #0002;white-space:pre-wrap;animation:pop .25s ease}
+.b.cli{align-self:flex-end;background:#dcf8c6;border-top-right-radius:2px}
+.b.bot{align-self:flex-start;background:#fff;border-top-left-radius:2px}
+.b.bot .lb{display:block;font-size:11px;color:var(--wa2);font-weight:700;margin-bottom:2px}
+.b.sys{align-self:center;background:#e1f2fb;color:#3b5560;font-size:12px;box-shadow:none}
+.b.img .ph{width:190px;height:120px;border-radius:8px;background:linear-gradient(135deg,#9aa7a0,#5f6f67);display:grid;place-items:center;color:#fff;font-size:34px}
+.b.img small{display:block;font-size:11px;color:var(--mute);margin-top:3px}
+.typing{align-self:flex-start;background:#fff;border-radius:10px;padding:8px 12px;font-size:20px;letter-spacing:2px;color:#999}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:none;opacity:1}}
+.quick{display:flex;gap:6px;padding:8px;background:#f0f0f0;border-top:1px solid #ddd}
+.quick button{flex:1;border:1px solid var(--wa2);background:#fff;color:var(--wa);border-radius:99px;padding:9px 6px;font-weight:700;font-size:13.5px;cursor:pointer}
+.quick button:active{background:#e8f5f1}
+.inp{display:flex;gap:8px;padding:8px;background:#f0f0f0}
+.inp div{flex:1;background:#fff;border-radius:99px;padding:9px 14px;color:#999;font-size:14px}
+.inp span{width:38px;height:38px;border-radius:50%;background:var(--wa2);display:grid;place-items:center;color:#fff}
+/* dueño */
+.owner{background:#111b21;color:#e9edef;min-height:300px}
+.owner .hd{border-color:#2a3942}.owner .hd span{color:#8696a0}
+.feed{padding:14px;display:flex;flex-direction:column;gap:12px;flex:1}
+.card{border-radius:12px;padding:12px 14px;white-space:pre-wrap;font-size:14.5px;animation:pop .3s ease;background:#202c33;border-left:5px solid var(--ok)}
+.card.alerta{border-left-color:var(--red);background:#3a1d20;box-shadow:0 0 0 2px #e5484d55}
+.card.llamada{border-left-color:var(--amber)}
+.empty{color:#8696a0;font-size:14px;text-align:center;margin:auto;padding:30px}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0}
+.ctrl button{border:0;background:var(--wa2);color:#fff;padding:9px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+.ctrl button.sec{background:#fff;color:var(--wa);border:1px solid var(--wa2)}
+.rules{font-size:13.5px;color:var(--mute);margin:10px 2px 0;padding-left:18px}
+/* bandeja */
+.inbox{max-height:640px;overflow-y:auto}
+.row{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid #f0f0f0;align-items:flex-start}
+.row.filt{opacity:.55}
+.row .ic{font-size:20px;width:26px;text-align:center}
+.row .bd{flex:1;min-width:0}
+.row .tp{display:flex;justify-content:space-between;gap:6px;font-size:13px}
+.row .tp b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .tx{font-size:14px;margin-top:2px}
+.row .mt{font-size:11.5px;color:var(--mute);margin-top:4px;display:none}
+.showwhy .row .mt{display:block}
+.pill{font-size:11px;font-weight:700;border-radius:99px;padding:2px 8px;white-space:nowrap}
+.pill.u{background:#fde2e2;color:#b4232a}.pill.f{background:#eceff1;color:#56636a}
+.stats{display:flex;gap:10px;padding:12px 14px;flex-wrap:wrap}
+.stat{flex:1;min-width:110px;background:#f6f8f7;border-radius:12px;padding:10px;text-align:center}
+.stat b{display:block;font-size:28px}.stat.u b{color:var(--red)}.stat.f b{color:var(--wa2)}
+.aviso{margin:4px 14px 14px;background:#dcf8c6;border-radius:10px;padding:10px 12px;white-space:pre-wrap;font-size:14.5px;box-shadow:0 1px 1px #0002}
+.toggle{font-size:13px;color:var(--wa);cursor:pointer;background:none;border:0;font-weight:700}
+footer{text-align:center;color:var(--mute);font-size:12.5px;padding:20px}
+/* modo video */
+.video header .lang,.video #sec2,.video footer,.video .ctrl,.video .rules{display:none}
+.still *{animation:none!important}.video main{padding:10px}.video h2{margin:6px 0 8px}
+</style>
+</head>
+<body>
+<header>
+ <div class="av">🤖</div>
+ <h1 data-i="title"></h1>
+ <span class="tag" data-i="tag"></span>
+ <div class="lang" id="lang" hidden><button data-l="es">ES</button><button data-l="en">EN</button></div>
+</header>
+<main>
+ <section id="sec1">
+  <h2><span class="n">1</span><span data-i="s1"></span></h2>
+  <div class="grid chat">
+   <div class="panel phone">
+    <div class="wa-top"><div class="av">🔧</div><div><b>Ferretería Roberto</b><i data-i="online"></i></div></div>
+    <div class="msgs" id="msgs"></div>
+    <div class="quick"><button id="qCall" data-i="call"></button><button id="qHuman" data-i="human"></button></div>
+    <div class="inp"><div data-i="write"></div><span>🎤</span></div>
+   </div>
+   <div class="panel owner">
+    <div class="hd"><div data-i="ownerTitle"></div><span data-i="ownerSub"></span></div>
+    <div class="feed" id="feed"><div class="empty" data-i="empty"></div></div>
+   </div>
+  </div>
+  <div class="ctrl"><button id="replay" data-i="replay"></button><button class="sec" id="skip" data-i="skip"></button></div>
+  <ul class="rules" id="rules"></ul>
+ </section>
+ <section id="sec2">
+  <h2><span class="n">2</span><span data-i="s2"></span></h2>
+  <div class="grid">
+   <div class="panel" id="inboxPanel">
+    <div class="hd"><div data-i="inboxTitle"></div><button class="toggle" id="why" data-i="why"></button></div>
+    <div class="inbox" id="inbox"></div>
+   </div>
+   <div class="panel">
+    <div class="hd"><div data-i="getsTitle"></div><span data-i="getsSub"></span></div>
+    <div class="stats"><div class="stat"><b id="sT"></b><span data-i="total"></span></div><div class="stat u"><b id="sU"></b><span data-i="urg"></span></div><div class="stat f"><b id="sF"></b><span data-i="filt"></span></div></div>
+    <div class="aviso" id="aviso"></div>
+   </div>
+  </div>
+ </section>
+</main>
+<footer data-i="foot"></footer>
+<script>
+const D = {"defaultLang": "es", "bilingual": false, "ui": {"title": {"es": "Recepción IA · Ferretería Roberto (demo)"}, "tag": {"es": "DEMO · datos de ejemplo"}, "s1": {"es": "El bot atiende WhatsApp fuera de horario"}, "online": {"es": "asistente virtual con IA · en línea"}, "call": {"es": "📲 Que me llamen"}, "human": {"es": "👤 Hablar con una persona"}, "callReply": {"es": "¡Dale! Le aviso a Roberto para que te llame apenas pueda 📲"}, "callOwner": {"es": "📲 *Pedido de llamada*\nUn cliente pidió que lo llamen. Número del chat."}, "humanReply": {"es": "Listo, te paso con una persona. Roberto o alguien del local te escribe por acá 👤"}, "humanOwner": {"es": "👤 *Quiere hablar con una persona*\nRespondele por este mismo chat."}, "write": {"es": "Escribí un mensaje"}, "botLabel": {"es": "Asistente virtual (IA)"}, "ownerTitle": {"es": "📱 Lo que le llega a Roberto"}, "ownerSub": {"es": "solo pedidos listos y urgencias"}, "empty": {"es": "Todavía nada. Roberto descansa tranquilo 😴"}, "replay": {"es": "▶ Ver de nuevo"}, "skip": {"es": "⏭ Ver todo"}, "rules": {"es": ["Se presenta siempre como asistente virtual con IA.", "No da precios ni inventa horarios: lo que no sabe, lo pasa a una persona.", "Los botones «📲 Que me llamen» y «👤 Hablar con una persona» están siempre a mano.", "Al dueño le llega solo el pedido listo o la urgencia, no todo el chat."]}, "s2": {"es": "Un día de mensajes: qué filtra y qué te avisa"}, "inboxTitle": {"es": "📥 Bandeja completa (24 mensajes de ejemplo)"}, "why": {"es": "Ver por qué"}, "getsTitle": {"es": "🔔 Lo que te llega"}, "getsSub": {"es": "un solo aviso, corto"}, "total": {"es": "mensajes"}, "urg": {"es": "urgentes"}, "filt": {"es": "filtrados"}, "pillU": {"es": "URGENTE"}, "pillF": {"es": "filtrado"}, "cat": {"es": "Categoría"}, "score": {"es": "Puntaje"}, "foot": {"es": "Demo de Recepción IA · Todos los mensajes y teléfonos son de ejemplo · No conectado a ningún WhatsApp real"}}, "chat": [{"t": "sys", "es": "Domingo 21:47 · local cerrado"}, {"t": "cli", "es": "Hola, ¿está abierto? Necesito material para el martes"}, {"t": "bot", "es": "¡Hola! 👋 Soy el asistente virtual con IA de Ferretería Roberto. Ahora el local está cerrado, pero te tomo el pedido y se lo dejo listo a Roberto para que te conteste apenas abra. ¿Qué necesitás y cuánto?"}, {"t": "cli", "es": "30 bolsas de cemento, 10 de cal y una llave de paso de 3/4"}, {"t": "bot", "es": "Perfecto. Si tenés una foto de la pieza que querés cambiar (la llave vieja, por ejemplo), mandala así Roberto ve la medida exacta 📷"}, {"t": "img", "es": "foto_llave_vieja.jpg"}, {"t": "bot", "es": "¡Recibida! ¿Para qué día lo necesitás?"}, {"t": "cli", "es": "Para el martes a la mañana. ¿Cuánto me sale todo?"}, {"t": "bot", "es": "Los precios te los confirma Roberto directamente, así no te paso un número equivocado 🙂 ¿A qué teléfono te puede llamar o escribir?"}, {"t": "cli", "es": "11 5555-0000. ¿Mañana abren a las 7?"}, {"t": "bot", "es": "El horario de mañana no lo tengo confirmado y no te quiero inventar uno: se lo paso a una persona y te lo confirman junto con el pedido. ¡Listo, pedido anotado! ✅"}, {"t": "owner_pedido", "es": "📝 *Pedido listo* · dom 21:52\n👤 Cliente: 11 5555-0000\n📦 30 bolsas de cemento, 10 de cal, 1 llave de paso 3/4\n📷 Foto adjunta (llave vieja)\n📅 Para: martes a la mañana\n⏳ Pendiente: pasarle precio y confirmar horario"}, {"t": "sys", "es": "Otro cliente · 23:10"}, {"t": "cli", "es": "URGENTE se me rompió un caño en la cocina y sale agua por todos lados 😰"}, {"t": "bot", "es": "Entiendo, es urgente. Mientras tanto, cerrá la llave de paso general de la casa (suele estar cerca del medidor). Ya le mandé un aviso urgente a Roberto. ¿Me pasás tu teléfono?"}, {"t": "cli", "es": "11 4444-1234"}, {"t": "owner_alerta", "es": "🚨 *URGENTE* · dom 23:11\nPérdida de agua en la cocina (caño roto)\n📞 11 4444-1234\nℹ️ Ya le dije que cierre la llave general\n➡️ Llamar ya"}, {"t": "bot", "es": "Listo, Roberto ya tiene tu aviso 🚨 Si preferís, tocá «👤 Hablar con una persona»."}], "results": [{"id": 1, "hora": "07:42", "de": "Marta (vecina, Av. San Martín)", "tipo": "texto", "texto": "Roberto buen día!! se me rompió la canilla de paso del baño y sale agua a chorro, no puedo cerrarla. Tenés llave de paso de 1/2? o conocés un plomero que venga YA? se me está inundando", "categoria": "emergencia", "puntaje": 10, "urgente": true, "motivo": "emergencia: «a chorro»; consulta: «tenes»; +2 «byab»; +1 «!!»", "resumen": "Se me rompió la canilla de paso del baño y sale agua a chorro, no puedo cerrarla. Tenés llave…", "resumen_en": null}, {"id": 2, "hora": "07:55", "de": "Cliente desconocido", "tipo": "texto", "texto": "Hola a qué hora abren hoy?", "categoria": "consulta", "puntaje": 2, "urgente": false, "motivo": "consulta: «a que hora»; +2 «bhoyb»", "resumen": "A qué hora abren hoy?", "resumen_en": null}, {"id": 3, "hora": "08:03", "de": "Distribuidora Sur (proveedor)", "tipo": "texto", "texto": "Buen día Roberto, te aviso que el pedido de caños de PVC y la pintura se demora, el camión llega el jueves en vez del martes. Disculpá.", "categoria": "proveedor", "puntaje": 1, "urgente": false, "motivo": "proveedor: «pedido de»", "resumen": "Te aviso que el pedido de caños de PVC y la pintura se demora, el camión llega el jueves en…", "resumen_en": null}, {"id": 4, "hora": "08:10", "de": "+54 9 11 ••••-2231", "tipo": "texto", "texto": "🎉 FELICITACIONES! Ganaste un iPhone 16. Reclamalo en este link antes de las 12hs: bit.ly/xxxx", "categoria": "spam", "puntaje": -20, "urgente": false, "motivo": "spam: «ganaste»", "resumen": "🎉 FELICITACIONES! Ganaste un iPhone 16. Reclamalo en este link antes de las 12hs: bit.ly/xxxx", "resumen_en": null}, {"id": 5, "hora": "08:21", "de": "Carlos (albañil)", "tipo": "audio", "texto": "[Audio transcrito 0:48] Robert, qué tal, mirá, para la obra de la calle Lisandro Medina necesito 40 bolsas de cemento, 20 de cal y 10 de plasticor para el viernes a primera hora. Si no llegás avisame hoy así consigo en otro lado, ¿dale?", "categoria": "pedido_grande", "puntaje": 8, "urgente": true, "motivo": "pedido_grande: «d{2,}s*(bolsas|rollos|baldes|metros|caños|chapas)»; +2 «bhoyb»; +2 «avisame hoy»; +1 «primera hora»; audio transcrito", "resumen": "Qué tal, mirá, para la obra de la calle Lisandro Medina necesito 40 bolsas de cemento, 20 de…", "resumen_en": null}, {"id": 6, "hora": "08:34", "de": "Laura", "tipo": "texto", "texto": "Hola! cuánto sale el rollo de teflón y si tienen silicona transparente", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «cuanto (sale|cuesta)»", "resumen": "Cuánto sale el rollo de teflón y si tienen silicona transparente", "resumen_en": null}, {"id": 7, "hora": "08:40", "de": "Jorge", "tipo": "texto", "texto": "Buenas, tienen tarugos del 8? cuánto la bolsita", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «tienen»", "resumen": "Tienen tarugos del 8? cuánto la bolsita", "resumen_en": null}, {"id": 8, "hora": "08:52", "de": "Silvia", "tipo": "texto", "texto": "Ayer compré un taladro y hoy no anda, hace ruido raro y largó olor a quemado. Quiero cambiarlo, estoy bastante enojada la verdad", "categoria": "reclamo", "puntaje": 7, "urgente": true, "motivo": "reclamo: «no anda»; +2 «bhoyb»", "resumen": "Ayer compré un taladro y hoy no anda, hace ruido raro y largó olor a quemado. Quiero…", "resumen_en": null}, {"id": 9, "hora": "09:05", "de": "Cliente desconocido", "tipo": "texto", "texto": "Abren los sábados a la tarde?", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «abren»", "resumen": "Abren los sábados a la tarde?", "resumen_en": null}, {"id": 10, "hora": "09:12", "de": "Don Aníbal", "tipo": "audio", "texto": "[Audio transcrito 1:12] Hola Roberto, soy Aníbal, el de la esquina. Che, ¿vos tenés esas lamparitas LED de las grandes, de 15 watts? Pasaría a la tarde. Bueno, nada, saludos a tu señora.", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «tenes»; audio transcrito", "resumen": "Soy Aníbal, el de la esquina. Che, ¿vos tenés esas lamparitas LED de las grandes, de 15 watts?…", "resumen_en": null}, {"id": 11, "hora": "09:20", "de": "Consorcio Bonifacini 4500", "tipo": "texto", "texto": "Buenos días. Somos el consorcio del edificio, hay una pérdida de gas en el palier del 2do piso, ya cortamos la llave general. Necesitamos flexible y llave de gas aprobada hoy mismo, el gasista viene a las 14.", "categoria": "emergencia", "puntaje": 14, "urgente": true, "motivo": "emergencia: «perdida de gas»; +2 «byab»; +3 «hoy mismo»; +2 «bhoyb»", "resumen": "Somos el consorcio del edificio, hay una pérdida de gas en el palier del 2do piso, ya cortamos…", "resumen_en": null}, {"id": 12, "hora": "09:31", "de": "Pinturería Mayorista (proveedor)", "tipo": "texto", "texto": "Hola! Te paso la nueva lista de precios de látex vigente desde el lunes. Cualquier cosa avisá.", "categoria": "proveedor", "puntaje": 1, "urgente": false, "motivo": "proveedor: «lista de precios»", "resumen": "Te paso la nueva lista de precios de látex vigente desde el lunes. Cualquier cosa avisá", "resumen_en": null}, {"id": 13, "hora": "09:45", "de": "Martín", "tipo": "texto", "texto": "Hacen copias de llaves? cuánto sale una doble paleta", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «cuanto (sale|cuesta)»", "resumen": "Hacen copias de llaves? cuánto sale una doble paleta", "resumen_en": null}, {"id": 14, "hora": "10:02", "de": "+54 9 11 ••••-9087", "tipo": "texto", "texto": "Hola! Ofrecemos servicio de posicionamiento SEO para tu negocio, primer mes gratis. Respondé SI para más info.", "categoria": "spam", "puntaje": -20, "urgente": false, "motivo": "spam: «seo»", "resumen": "Ofrecemos servicio de posicionamiento SEO para tu negocio, primer mes gratis. Respondé SI para…", "resumen_en": null}, {"id": 15, "hora": "10:15", "de": "Rosa", "tipo": "texto", "texto": "Gracias Roberto por la paciencia ayer, la pileta quedó perfecta 🙌", "categoria": "info", "puntaje": 0, "urgente": false, "motivo": "info: «gracias»", "resumen": "Gracias Roberto por la paciencia ayer, la pileta quedó perfecta 🙌", "resumen_en": null}, {"id": 16, "hora": "10:28", "de": "Escuela N° 12 (portería)", "tipo": "texto", "texto": "Hola, somos de la escuela. Se tapó el inodoro del baño de chicos y está rebalsando, ¿tienen sopapa grande y destapador químico? Mandamos a alguien en 20 minutos, ¿lo pueden tener separado?", "categoria": "emergencia", "puntaje": 9, "urgente": true, "motivo": "emergencia: «rebals»; consulta: «tienen»; +2 «20 minutos»", "resumen": "Somos de la escuela. Se tapó el inodoro del baño de chicos y está rebalsando, ¿tienen sopapa…", "resumen_en": null}, {"id": 17, "hora": "10:40", "de": "Pablo", "tipo": "texto", "texto": "Cuánto sale la pintura látex interior de 20 litros, la blanca?", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «cuanto (sale|cuesta)»", "resumen": "Cuánto sale la pintura látex interior de 20 litros, la blanca?", "resumen_en": null}, {"id": 18, "hora": "10:55", "de": "Electricidad Norte (proveedor)", "tipo": "texto", "texto": "Roberto, el envío de cables de 2.5mm que tenías para mañana se cancela por falta de stock en fábrica. Si lo necesitás urgente decime y te busco alternativa hoy.", "categoria": "proveedor", "puntaje": 8, "urgente": true, "motivo": "proveedor: «se cancela»; +2 «bhoyb»; +2 «urgente»; +3 «se cancela»", "resumen": "El envío de cables de 2.5mm que tenías para mañana se cancela por falta de stock en fábrica…", "resumen_en": null}, {"id": 19, "hora": "11:08", "de": "Lucía", "tipo": "audio", "texto": "[Audio transcrito 0:35] Hola, eh, quería saber si tienen cerraduras de seguridad, porque anoche me forzaron la puerta y no puedo dejar la casa así. Necesito cambiarla hoy, ¿alguien me la puede instalar?", "categoria": "emergencia", "puntaje": 9, "urgente": true, "motivo": "emergencia: «forzaron»; consulta: «tienen»; +2 «bhoyb»; audio transcrito", "resumen": "Quería saber si tienen cerraduras de seguridad, porque anoche me forzaron la puerta y no puedo…", "resumen_en": null}, {"id": 20, "hora": "11:20", "de": "Cliente desconocido", "tipo": "texto", "texto": "Hacen envíos a Ciudadela?", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «envios»", "resumen": "Hacen envíos a Ciudadela?", "resumen_en": null}, {"id": 21, "hora": "11:33", "de": "Hernán", "tipo": "texto", "texto": "Hola, me cobraron dos veces el mismo producto ayer, me fijé en el ticket. Quiero que me devuelvan la plata", "categoria": "reclamo", "puntaje": 5, "urgente": true, "motivo": "reclamo: «cobraron dos veces»", "resumen": "Me cobraron dos veces el mismo producto ayer, me fijé en el ticket. Quiero que me devuelvan la…", "resumen_en": null}, {"id": 22, "hora": "11:47", "de": "Grupo vecinos Caseros", "tipo": "texto", "texto": "Reenviado: Mañana corte de luz programado de 9 a 13 en zona Caseros centro.", "categoria": "info", "puntaje": 0, "urgente": false, "motivo": "info: «reenviado»", "resumen": "Reenviado: Mañana corte de luz programado de 9 a 13 en zona Caseros centro", "resumen_en": null}, {"id": 23, "hora": "12:05", "de": "Gustavo (constructor)", "tipo": "texto", "texto": "Roberto, presupuesto para 15 rollos de membrana, 8 baldes de impermeabilizante y rodillos. Es para la semana que viene, sin apuro, pasame cuando puedas.", "categoria": "pedido_grande", "puntaje": -3, "urgente": false, "motivo": "pedido_grande: «d{2,}s*(bolsas|rollos|baldes|metros|caños|chapas)»; -4 «sin apuro»; -2 «cuando puedas»", "resumen": "Presupuesto para 15 rollos de membrana, 8 baldes de impermeabilizante y rodillos. Es para la…", "resumen_en": null}, {"id": 24, "hora": "12:18", "de": "Sofía", "tipo": "texto", "texto": "Tienen garrafa de 10kg? se me terminó y tengo que cocinar para los chicos", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «tienen»", "resumen": "Tienen garrafa de 10kg? se me terminó y tengo que cocinar para los chicos", "resumen_en": null}], "aviso": {"es": "🔔 *Recepción IA · Ferretería Roberto*\nDe 24 mensajes, 8 necesitan que los mires vos:\n🚨 09:20 · Consorcio Bonifacini 4500: Somos el consorcio del edificio, hay una pérdida de gas en el palier del 2do piso, ya cortamos… → _Llamar ya_\n🚨 07:42 · Marta (vecina, Av. San Martín): Se me rompió la canilla de paso del baño y sale agua a chorro, no puedo cerrarla. Tenés llave… → _Llamar ya_\n🚨 10:28 · Escuela N° 12 (portería): Somos de la escuela. Se tapó el inodoro del baño de chicos y está rebalsando, ¿tienen sopapa… → _Llamar ya_\n🚨 11:08 · Lucía: Quería saber si tienen cerraduras de seguridad, porque anoche me forzaron la puerta y no puedo… → _Llamar ya_\n😠 08:52 · Silvia: Ayer compré un taladro y hoy no anda, hace ruido raro y largó olor a quemado. Quiero… → _Responder hoy_\n😠 11:33 · Hernán: Me cobraron dos veces el mismo producto ayer, me fijé en el ticket. Quiero que me devuelvan la… → _Responder hoy_\n📦 08:21 · Carlos (albañil): Qué tal, mirá, para la obra de la calle Lisandro Medina necesito 40 bolsas de cemento, 20 de… → _Confirmar hoy_\n🚚 10:55 · Electricidad Norte (proveedor): El envío de cables de 2.5mm que tenías para mañana se cancela por falta de stock en fábrica… → _Revisar_\n✅ Los otros 16 (consultas, saludos, proveedores sin apuro y spam) los atendí o los dejé anotados."}, "labels": {"emergencia": ["🚨", "Emergencia", "Emergency", "Llamar ya", "Call now"], "reclamo": ["😠", "Reclamo", "Complaint", "Responder hoy", "Reply today"], "pedido_grande": ["📦", "Pedido grande con fecha", "Large order with date", "Confirmar hoy", "Confirm today"], "proveedor": ["🚚", "Proveedor", "Supplier", "Revisar", "Review"], "consulta": ["❓", "Consulta (precio/stock/horario)", "Question (price/stock/hours)", "Lo contesta el bot", "Bot answers"], "info": ["💬", "Informativo / saludo", "Info / greeting", "Nada", "None"], "spam": ["🗑️", "Spam", "Spam", "Ignorado", "Ignored"]}};
+const qs = new URLSearchParams(location.search);
+let L = qs.get("lang") || D.defaultLang;
+if (qs.get("video")) document.body.classList.add("video");
+if (qs.has("step")) document.body.classList.add("still");
+const t = k => (D.ui[k] && (D.ui[k][L] || D.ui[k].es)) || "";
+const tx = o => o[L] || o.es;
+const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])).replace(/\*(.+?)\*/g,"<b>$1</b>").replace(/(\s)_([^_\n]+)_(?=\s|$)/g,"$1<i>$2</i>");
+const $ = id => document.getElementById(id);
+let timers = [], step = 0;
+
+function paintUI(){
+  document.documentElement.lang = L;
+  document.querySelectorAll("[data-i]").forEach(el => el.textContent = t(el.dataset.i));
+  document.title = t("title");
+  $("rules").innerHTML = (D.ui.rules[L]||D.ui.rules.es).map(r=>"<li>"+r+"</li>").join("");
+  if (D.bilingual){ $("lang").hidden = false; $("lang").querySelectorAll("button").forEach(b=>b.classList.toggle("on", b.dataset.l===L)); }
+  renderInbox();
+}
+function bubble(ev){
+  const m = $("msgs"), f = $("feed");
+  if (ev.t.startsWith("owner")) {
+    const e = f.querySelector(".empty"); if (e) e.remove();
+    const c = document.createElement("div");
+    c.className = "card " + (ev.t==="owner_alerta"?"alerta":ev.t==="owner_llamada"?"llamada":"");
+    c.innerHTML = esc(tx(ev)); f.prepend(c); return;
+  }
+  const b = document.createElement("div"); b.className = "b " + ev.t;
+  if (ev.t==="img") b.innerHTML = '<div class="ph">📷</div><small>'+esc(tx(ev))+'</small>';
+  else b.innerHTML = (ev.t==="bot"?'<span class="lb">🤖 '+t("botLabel")+'</span>':"") + esc(tx(ev));
+  m.appendChild(b); m.scrollTop = m.scrollHeight;
+}
+function reset(){ timers.forEach(clearTimeout); timers=[]; step=0; $("msgs").innerHTML=""; $("feed").innerHTML='<div class="empty">'+t("empty")+'</div>'; }
+function play(fast){
+  reset();
+  const n = qs.has("step") ? +qs.get("step") : (fast ? D.chat.length : 0);
+  for (; step < n && step < D.chat.length; step++) bubble(D.chat[step]);
+  $("msgs").scrollTop = 1e6;
+  if (qs.has("step") || fast) return;
+  let acc = 400;
+  for (let i = step; i < D.chat.length; i++){
+    const ev = D.chat[i];
+    const wait = ev.t==="bot" ? 1300 : ev.t==="sys" ? 700 : 1000;
+    if (ev.t==="bot") timers.push(setTimeout(()=>{const ty=document.createElement("div");ty.className="typing";ty.id="ty";ty.textContent="•••";$("msgs").appendChild(ty);$("msgs").scrollTop=1e6;}, acc));
+    acc += wait;
+    timers.push(setTimeout(()=>{const ty=$("ty"); if(ty) ty.remove(); bubble(ev); step=i+1;}, acc));
+  }
+}
+function quick(kind){
+  bubble({t:"cli", es:t(kind)});
+  timers.push(setTimeout(()=>{ bubble({t:"bot", es:t(kind+"Reply")}); bubble({t:"owner_llamada", es:t(kind+"Owner")}); }, 700));
+}
+function renderInbox(){
+  const R = D.results; let u=0;
+  $("inbox").innerHTML = R.map(r=>{ if(r.urgente) u++;
+    const res = L==="en" && r.en ? r.en : (r.texto || r.es);
+    return `<div class="row ${r.urgente?"":"filt"}"><div class="ic">${D.labels[r.categoria][0]}</div><div class="bd">
+     <div class="tp"><b>${r.de}</b><span>${r.hora} <span class="pill ${r.urgente?"u":"f"}">${r.urgente?t("pillU"):t("pillF")}</span></span></div>
+     <div class="tx">${r.tipo==="audio"?"🎙️ ":""}${esc(res)}</div>
+     <div class="mt">${t("cat")}: ${D.labels[r.categoria][L==="en"?2:1]} · ${t("score")}: ${r.puntaje} · ${esc(r.motivo)}</div></div></div>`}).join("");
+  $("sT").textContent=R.length; $("sU").textContent=u; $("sF").textContent=R.length-u;
+  $("aviso").innerHTML = esc(D.aviso[L] || D.aviso.es);
+}
+$("replay").onclick = ()=>{ qs.delete("step"); play(false); };
+$("skip").onclick = ()=>{ qs.delete("step"); play(true); };
+$("qCall").onclick = ()=>quick("call");
+$("qHuman").onclick = ()=>quick("human");
+$("why").onclick = ()=>$("inboxPanel").classList.toggle("showwhy");
+$("lang").querySelectorAll("button").forEach(b=>b.onclick=()=>{ L=b.dataset.l; paintUI(); play(true); });
+paintUI(); play(false);
+</script>
+</body>
+</html>
