@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Recepción IA · Clínica Dental Arganzuela (demo)</title>
+<style>
+:root{--wa:#075e54;--wa2:#128c7e;--ok:#25d366;--bg:#f3efe7;--card:#fff;--ink:#1d2421;--mute:#6b7570;--red:#e5484d;--amber:#f5a524}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif;background:var(--bg);color:var(--ink);line-height:1.4}
+header{background:var(--wa);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+header h1{font-size:18px;margin:0;flex:1;min-width:200px}
+header small{display:block;font-weight:400;opacity:.85;font-size:13px}
+.tag{background:#ffd666;color:#5a4300;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:700}
+.lang[hidden]{display:none}.lang{display:flex;border:1px solid #fff8;border-radius:99px;overflow:hidden}
+.lang button{background:none;border:0;color:#fff;padding:6px 12px;font-weight:700;cursor:pointer}
+.lang button.on{background:#fff;color:var(--wa)}
+main{max-width:1180px;margin:0 auto;padding:16px}
+h2{font-size:17px;margin:22px 0 10px}
+h2 .n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--wa2);color:#fff;font-size:14px;margin-right:6px}
+.grid{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:860px){.grid{grid-template-columns:1fr 1fr}.grid.chat{grid-template-columns:400px 1fr}}
+.panel{background:var(--card);border-radius:16px;box-shadow:0 2px 10px #0001;overflow:hidden;display:flex;flex-direction:column}
+.panel>.hd{padding:12px 14px;border-bottom:1px solid #eee;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.panel>.hd span{font-weight:400;color:var(--mute);font-size:13px}
+/* teléfono */
+.phone{background:#e5ddd5;height:640px;max-height:80vh}
+.wa-top{background:var(--wa);color:#fff;padding:10px 12px;display:flex;align-items:center;gap:10px}
+.av{width:36px;height:36px;border-radius:50%;background:#dfe5e3;display:grid;place-items:center;font-size:20px}
+.wa-top b{display:block;font-size:15px}.wa-top i{font-style:normal;font-size:12px;opacity:.85}
+.msgs{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:6px;
+ background-image:radial-gradient(#0000000a 1px,transparent 1px);background-size:14px 14px}
+.b{max-width:84%;padding:7px 10px;border-radius:10px;font-size:14.5px;box-shadow:0 1px 1px #0002;white-space:pre-wrap;animation:pop .25s ease}
+.b.cli{align-self:flex-end;background:#dcf8c6;border-top-right-radius:2px}
+.b.bot{align-self:flex-start;background:#fff;border-top-left-radius:2px}
+.b.bot .lb{display:block;font-size:11px;color:var(--wa2);font-weight:700;margin-bottom:2px}
+.b.sys{align-self:center;background:#e1f2fb;color:#3b5560;font-size:12px;box-shadow:none}
+.b.img .ph{width:190px;height:120px;border-radius:8px;background:linear-gradient(135deg,#9aa7a0,#5f6f67);display:grid;place-items:center;color:#fff;font-size:34px}
+.b.img small{display:block;font-size:11px;color:var(--mute);margin-top:3px}
+.typing{align-self:flex-start;background:#fff;border-radius:10px;padding:8px 12px;font-size:20px;letter-spacing:2px;color:#999}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:none;opacity:1}}
+.quick{display:flex;gap:6px;padding:8px;background:#f0f0f0;border-top:1px solid #ddd}
+.quick button{flex:1;border:1px solid var(--wa2);background:#fff;color:var(--wa);border-radius:99px;padding:9px 6px;font-weight:700;font-size:13.5px;cursor:pointer}
+.quick button:active{background:#e8f5f1}
+.inp{display:flex;gap:8px;padding:8px;background:#f0f0f0}
+.inp div{flex:1;background:#fff;border-radius:99px;padding:9px 14px;color:#999;font-size:14px}
+.inp span{width:38px;height:38px;border-radius:50%;background:var(--wa2);display:grid;place-items:center;color:#fff}
+/* dueño */
+.owner{background:#111b21;color:#e9edef;min-height:300px}
+.owner .hd{border-color:#2a3942}.owner .hd span{color:#8696a0}
+.feed{padding:14px;display:flex;flex-direction:column;gap:12px;flex:1}
+.card{border-radius:12px;padding:12px 14px;white-space:pre-wrap;font-size:14.5px;animation:pop .3s ease;background:#202c33;border-left:5px solid var(--ok)}
+.card.alerta{border-left-color:var(--red);background:#3a1d20;box-shadow:0 0 0 2px #e5484d55}
+.card.llamada{border-left-color:var(--amber)}
+.empty{color:#8696a0;font-size:14px;text-align:center;margin:auto;padding:30px}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0}
+.ctrl button{border:0;background:var(--wa2);color:#fff;padding:9px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+.ctrl button.sec{background:#fff;color:var(--wa);border:1px solid var(--wa2)}
+.rules{font-size:13.5px;color:var(--mute);margin:10px 2px 0;padding-left:18px}
+/* bandeja */
+.inbox{max-height:640px;overflow-y:auto}
+.row{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid #f0f0f0;align-items:flex-start}
+.row.filt{opacity:.55}
+.row .ic{font-size:20px;width:26px;text-align:center}
+.row .bd{flex:1;min-width:0}
+.row .tp{display:flex;justify-content:space-between;gap:6px;font-size:13px}
+.row .tp b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .tx{font-size:14px;margin-top:2px}
+.row .mt{font-size:11.5px;color:var(--mute);margin-top:4px;display:none}
+.showwhy .row .mt{display:block}
+.pill{font-size:11px;font-weight:700;border-radius:99px;padding:2px 8px;white-space:nowrap}
+.pill.u{background:#fde2e2;color:#b4232a}.pill.f{background:#eceff1;color:#56636a}
+.stats{display:flex;gap:10px;padding:12px 14px;flex-wrap:wrap}
+.stat{flex:1;min-width:110px;background:#f6f8f7;border-radius:12px;padding:10px;text-align:center}
+.stat b{display:block;font-size:28px}.stat.u b{color:var(--red)}.stat.f b{color:var(--wa2)}
+.aviso{margin:4px 14px 14px;background:#dcf8c6;border-radius:10px;padding:10px 12px;white-space:pre-wrap;font-size:14.5px;box-shadow:0 1px 1px #0002}
+.toggle{font-size:13px;color:var(--wa);cursor:pointer;background:none;border:0;font-weight:700}
+footer{text-align:center;color:var(--mute);font-size:12.5px;padding:20px}
+/* modo video */
+.video header .lang,.video #sec2,.video footer,.video .ctrl,.video .rules{display:none}
+.still *{animation:none!important}.video main{padding:10px}.video h2{margin:6px 0 8px}
+</style>
+</head>
+<body>
+<header>
+ <div class="av">🤖</div>
+ <h1 data-i="title"></h1>
+ <span class="tag" data-i="tag"></span>
+ <div class="lang" id="lang" hidden><button data-l="es">ES</button><button data-l="en">EN</button></div>
+</header>
+<main>
+ <section id="sec1">
+  <h2><span class="n">1</span><span data-i="s1"></span></h2>
+  <div class="grid chat">
+   <div class="panel phone">
+    <div class="wa-top"><div class="av">🦷</div><div><b>Clínica Dental Arganzuela</b><i data-i="online"></i></div></div>
+    <div class="msgs" id="msgs"></div>
+    <div class="quick"><button id="qCall" data-i="call"></button><button id="qHuman" data-i="human"></button></div>
+    <div class="inp"><div data-i="write"></div><span>🎤</span></div>
+   </div>
+   <div class="panel owner">
+    <div class="hd"><div data-i="ownerTitle"></div><span data-i="ownerSub"></span></div>
+    <div class="feed" id="feed"><div class="empty" data-i="empty"></div></div>
+   </div>
+  </div>
+  <div class="ctrl"><button id="replay" data-i="replay"></button><button class="sec" id="skip" data-i="skip"></button></div>
+  <ul class="rules" id="rules"></ul>
+ </section>
+ <section id="sec2">
+  <h2><span class="n">2</span><span data-i="s2"></span></h2>
+  <div class="grid">
+   <div class="panel" id="inboxPanel">
+    <div class="hd"><div data-i="inboxTitle"></div><button class="toggle" id="why" data-i="why"></button></div>
+    <div class="inbox" id="inbox"></div>
+   </div>
+   <div class="panel">
+    <div class="hd"><div data-i="getsTitle"></div><span data-i="getsSub"></span></div>
+    <div class="stats"><div class="stat"><b id="sT"></b><span data-i="total"></span></div><div class="stat u"><b id="sU"></b><span data-i="urg"></span></div><div class="stat f"><b id="sF"></b><span data-i="filt"></span></div></div>
+    <div class="aviso" id="aviso"></div>
+   </div>
+  </div>
+ </section>
+</main>
+<footer data-i="foot"></footer>
+<script>
+const D = {"defaultLang": "es", "bilingual": false, "ui": {"title": {"es": "Recepción IA · Clínica Dental Arganzuela (demo)"}, "tag": {"es": "DEMO · clínica ficticia · datos de ejemplo"}, "s1": {"es": "El asistente atiende WhatsApp fuera de horario"}, "online": {"es": "asistente virtual con IA · en línea"}, "call": {"es": "📲 Que me llamen"}, "human": {"es": "👤 Hablar con una persona"}, "callReply": {"es": "Por supuesto. Aviso a recepción para que le llamen lo antes posible 📲"}, "callOwner": {"es": "📲 *Petición de llamada*\nUn paciente ha pedido que le llamen. Número del chat."}, "humanReply": {"es": "Enseguida le paso con una persona de recepción 👤"}, "humanOwner": {"es": "👤 *Quiere hablar con una persona*\nResponda por este mismo chat."}, "write": {"es": "Escriba un mensaje"}, "botLabel": {"es": "Asistente virtual (IA)"}, "ownerTitle": {"es": "📱 Lo que le llega a recepción"}, "ownerSub": {"es": "solo solicitudes listas y urgencias"}, "empty": {"es": "Todavía nada. Recepción puede estar tranquila 😴"}, "replay": {"es": "▶ Ver de nuevo"}, "skip": {"es": "⏭ Ver todo"}, "rules": {"es": ["Siempre se presenta como asistente virtual con IA (transparencia, art. 50 del Reglamento de IA de la UE).", "No da precios ni se inventa horarios: lo que no sabe, lo pasa a una persona.", "Los botones «📲 Que me llamen» y «👤 Hablar con una persona» siempre están visibles.", "A recepción solo le llega la solicitud lista o la urgencia por dolor (en rojo)."]}, "s2": {"es": "Un día de mensajes: qué filtra y qué le avisa"}, "inboxTitle": {"es": "📥 Bandeja completa (20 mensajes de ejemplo)"}, "why": {"es": "Ver por qué"}, "getsTitle": {"es": "🔔 Lo que le llega"}, "getsSub": {"es": "un solo aviso, corto"}, "total": {"es": "mensajes"}, "urg": {"es": "urgentes"}, "filt": {"es": "filtrados"}, "pillU": {"es": "URGENTE"}, "pillF": {"es": "filtrado"}, "cat": {"es": "Categoría"}, "score": {"es": "Puntuación"}, "foot": {"es": "Demo de Recepción IA · Clínica Dental Arganzuela (Madrid) es un nombre ficticio · Mensajes y teléfonos de ejemplo · Sin conexión a WhatsApp real"}}, "chat": [{"t": "sys", "es": "Domingo 21:30 · clínica cerrada"}, {"t": "cli", "es": "Buenas noches, quería pedir primera visita"}, {"t": "bot", "es": "¡Buenas noches! 👋 Soy el asistente virtual con IA de la Clínica Dental Arganzuela. Ahora la clínica está cerrada, pero tomo sus datos y se los dejo listos a recepción. ¿Me indica su nombre y el motivo de la consulta?"}, {"t": "cli", "es": "Laura Gómez. Me sangran las encías al cepillarme y quería una revisión"}, {"t": "bot", "es": "Gracias, Laura. ¿Qué día y franja le vendrían mejor (mañana o tarde)?"}, {"t": "cli", "es": "Martes o miércoles por la tarde. ¿Cuánto cuesta la primera visita? ¿Abren a las 16?"}, {"t": "bot", "es": "Los precios y los horarios disponibles se los confirma una persona de recepción; prefiero no darle un dato equivocado. ¿A qué teléfono la podemos llamar?"}, {"t": "cli", "es": "612 555 087"}, {"t": "bot", "es": "¡Perfecto! ✅ Su solicitud queda registrada. Recepción la llamará para confirmar día y hora."}, {"t": "owner_pedido", "es": "📝 *Primera visita* · dom 21:34\n👤 Laura Gómez\n🦷 Sangrado de encías, revisión\n📅 Mar o mié por la tarde\n📞 612 555 087\n⏳ Pendiente: confirmar hueco y precio"}, {"t": "sys", "es": "Otro paciente · 23:05"}, {"t": "cli", "es": "Tengo un dolor de muelas muy fuerte y la cara hinchada, no puedo dormir"}, {"t": "bot", "es": "Siento mucho que esté así. Si tiene fiebre alta o le cuesta tragar o respirar, llame al 112. Ya he enviado un aviso urgente a la clínica. ¿Me confirma su nombre y teléfono?"}, {"t": "cli", "es": "Pablo Ortega, 699 555 412"}, {"t": "owner_alerta", "es": "🚨 *URGENCIA POR DOLOR* · dom 23:06\n👤 Pablo Ortega\n🦷 Dolor muy fuerte + cara hinchada\n📞 699 555 412\n➡️ Llamar a primera hora / hueco de urgencia"}, {"t": "bot", "es": "Listo, recepción ya tiene su aviso urgente 🚨 Si lo prefiere, pulse «👤 Hablar con una persona»."}, {"t": "sys", "es": "Lunes 07:50"}, {"t": "cli", "es": "Hola, tengo cita hoy a las 10 y no puedo ir, ¿la puedo cambiar o cancelar?"}, {"t": "bot", "es": "Claro. Anoto que no puede venir hoy a las 10. ¿Prefiere cambiarla a otro día o cancelarla?"}, {"t": "cli", "es": "Cambiarla, mejor el jueves"}, {"t": "owner_pedido", "es": "📅 *Cambio de cita* · lun 07:51\n❌ Hoy 10:00 (libera hueco)\n➡️ Prefiere jueves\n⏳ Pendiente: confirmar nueva hora"}, {"t": "bot", "es": "Hecho ✅ Recepción le confirmará la nueva hora del jueves por este chat."}], "results": [{"id": 1, "hora": "07:10", "de": "Lucía M.", "tipo": "texto", "texto": "Buenos días, llevo toda la noche con un dolor de muelas insoportable, no he podido dormir y tengo la cara hinchada. ¿Me pueden ver hoy?", "categoria": "emergencia", "puntaje": 9, "urgente": true, "motivo": "emergencia: «dolor (de muelas )?(insoportable|muy fuerte)»; +2 «bhoyb»", "resumen": "Llevo toda la noche con un dolor de muelas insoportable, no he podido dormir y tengo la cara…", "resumen_en": null}, {"id": 2, "hora": "07:32", "de": "Desconocido", "tipo": "texto", "texto": "¿A qué hora abren hoy?", "categoria": "consulta", "puntaje": 2, "urgente": false, "motivo": "consulta: «a que hora»; +2 «bhoyb»", "resumen": "¿A qué hora abren hoy?", "resumen_en": null}, {"id": 3, "hora": "08:05", "de": "Javier P.", "tipo": "texto", "texto": "Hola, quería pedir primera visita para una revisión y limpieza. Soy Javier Pérez, prefiero los jueves por la tarde, mi teléfono es 612 555 014. Sin prisa.", "categoria": "cita", "puntaje": -1, "urgente": false, "motivo": "cita: «primera visita»; -4 «sin prisa»; 0 «prefiere|prefiero»", "resumen": "Quería pedir primera visita para una revisión y limpieza. Soy Javier Pérez, prefiero los…", "resumen_en": null}, {"id": 4, "hora": "08:20", "de": "Carmen R.", "tipo": "texto", "texto": "¿Cuánto cuesta un blanqueamiento?", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «cuanto cuesta»", "resumen": "¿Cuánto cuesta un blanqueamiento?", "resumen_en": null}, {"id": 5, "hora": "08:41", "de": "Andrés G.", "tipo": "audio", "texto": "[audio transcrito] Mi hijo se ha caído en el colegio y se le ha roto un diente de delante, está sangrando. ¿Qué hago?", "categoria": "emergencia", "puntaje": 7, "urgente": true, "motivo": "emergencia: «sangra»; audio transcrito", "resumen": "[audio transcrito] Mi hijo se ha caído en el colegio y se le ha roto un diente de delante…", "resumen_en": null}, {"id": 6, "hora": "09:02", "de": "Marta L.", "tipo": "texto", "texto": "Buenos días, tengo cita mañana a las 10 y no puedo ir, ¿la podemos cambiar al viernes? Hoy mismo si puede ser, gracias.", "categoria": "cita", "puntaje": 8, "urgente": true, "motivo": "cita: «no puedo ir»; +2 «bhoyb»; +2 «hoy mismo»; +1 «manana»", "resumen": "Tengo cita mañana a las 10 y no puedo ir, ¿la podemos cambiar al viernes? Hoy mismo si puede…", "resumen_en": null}, {"id": 7, "hora": "09:15", "de": "Promo SEO", "tipo": "texto", "texto": "¡Felicidades! Su clínica ha sido seleccionada para posicionamiento SEO, primer mes gratis. Responda SI: bit.ly/xx", "categoria": "spam", "puntaje": -20, "urgente": false, "motivo": "spam: «felicidades»", "resumen": "¡Felicidades! Su clínica ha sido seleccionada para posicionamiento SEO, primer mes gratis…", "resumen_en": null}, {"id": 8, "hora": "09:30", "de": "Pilar S.", "tipo": "texto", "texto": "¿Aceptan Sanitas o Adeslas?", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «aceptan»", "resumen": "¿Aceptan Sanitas o Adeslas?", "resumen_en": null}, {"id": 9, "hora": "09:48", "de": "Raúl D.", "tipo": "texto", "texto": "Me pusieron un empaste la semana pasada y se me ha caído. Estoy bastante molesto, nadie me ha llamado.", "categoria": "reclamo", "puntaje": 5, "urgente": true, "motivo": "reclamo: «(estoy|bastante) molest»", "resumen": "Me pusieron un empaste la semana pasada y se me ha caído. Estoy bastante molesto, nadie me ha…", "resumen_en": null}, {"id": 10, "hora": "10:05", "de": "Depósito Dental Centro", "tipo": "texto", "texto": "Le confirmamos que el pedido de composites llega el martes. Adjuntamos la nueva lista de precios.", "categoria": "proveedor", "puntaje": 1, "urgente": false, "motivo": "proveedor: «pedido de»", "resumen": "Le confirmamos que el pedido de composites llega el martes. Adjuntamos la nueva lista de…", "resumen_en": null}, {"id": 11, "hora": "10:22", "de": "Elena V.", "tipo": "texto", "texto": "Necesito cancelar la cita del lunes, ya les llamaré para otra fecha cuando pueda.", "categoria": "cita", "puntaje": 1, "urgente": false, "motivo": "cita: «cancelar la cita»; -2 «cuando pueda»", "resumen": "Necesito cancelar la cita del lunes, ya les llamaré para otra fecha cuando pueda", "resumen_en": null}, {"id": 12, "hora": "10:40", "de": "Tomás F.", "tipo": "texto", "texto": "¿Hacen ortodoncia invisible?", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «hacen »", "resumen": "¿Hacen ortodoncia invisible?", "resumen_en": null}, {"id": 13, "hora": "11:03", "de": "Isabel N.", "tipo": "texto", "texto": "Gracias por todo ayer, muy amables 😊", "categoria": "info", "puntaje": 0, "urgente": false, "motivo": "info: «gracias por todo»", "resumen": "Gracias por todo ayer, muy amables 😊", "resumen_en": null}, {"id": 14, "hora": "11:25", "de": "Sergio A.", "tipo": "texto", "texto": "Me sacaron la muela del juicio ayer y sigue sangrando mucho, no para. ¿Es normal?", "categoria": "emergencia", "puntaje": 7, "urgente": true, "motivo": "emergencia: «sangra»", "resumen": "Me sacaron la muela del juicio ayer y sigue sangrando mucho, no para. ¿Es normal?", "resumen_en": null}, {"id": 15, "hora": "12:10", "de": "Nuria B.", "tipo": "texto", "texto": "Quería pedir primera visita para mi madre, 72 años, por una prótesis que le molesta. Prefiere por las mañanas. Teléfono 699 555 231.", "categoria": "cita", "puntaje": 4, "urgente": false, "motivo": "cita: «primera visita»; +1 «manana»; 0 «prefiere|prefiero»", "resumen": "Quería pedir primera visita para mi madre, 72 años, por una prótesis que le molesta. Prefiere…", "resumen_en": null}, {"id": 16, "hora": "13:00", "de": "Grupo vecinos", "tipo": "texto", "texto": "Reenviado: mañana hay corte de agua en la calle Embajadores de 9 a 12.", "categoria": "info", "puntaje": 1, "urgente": false, "motivo": "info: «reenviado»; +1 «manana»", "resumen": "Reenviado: mañana hay corte de agua en la calle Embajadores de 9 a 12", "resumen_en": null}, {"id": 17, "hora": "15:20", "de": "Diego C.", "tipo": "texto", "texto": "Se me ha soltado la corona y me duele mucho al masticar. ¿Me pueden atender urgente?", "categoria": "emergencia", "puntaje": 9, "urgente": true, "motivo": "emergencia: «me duele mucho»; +2 «urgente»", "resumen": "Se me ha soltado la corona y me duele mucho al masticar. ¿Me pueden atender urgente?", "resumen_en": null}, {"id": 18, "hora": "16:45", "de": "Ana T.", "tipo": "texto", "texto": "¿Trabajan los sábados?", "categoria": "consulta", "puntaje": 0, "urgente": false, "motivo": "consulta: «trabajan»", "resumen": "¿Trabajan los sábados?", "resumen_en": null}, {"id": 19, "hora": "18:30", "de": "Beatriz H.", "tipo": "texto", "texto": "Hola, quería cambiar mi cita del miércoles a otro día de la semana que viene, nada urgente.", "categoria": "cita", "puntaje": 0, "urgente": false, "motivo": "cita: «cambiar (mi|la) cita»; +2 «urgente»; -5 «nada urgente»", "resumen": "Quería cambiar mi cita del miércoles a otro día de la semana que viene, nada urgente", "resumen_en": null}, {"id": 20, "hora": "22:15", "de": "Pablo O.", "tipo": "texto", "texto": "Perdonen la hora, tengo un flemón y fiebre, el dolor es muy fuerte. ¿Mañana a primera hora tienen hueco?", "categoria": "emergencia", "puntaje": 11, "urgente": true, "motivo": "emergencia: «flemon»; +1 «manana»; +2 «fiebre»; +1 «primera hora»", "resumen": "Tengo un flemón y fiebre, el dolor es muy fuerte. ¿Mañana a primera hora tienen hueco?", "resumen_en": null}], "aviso": {"es": "🔔 *Recepción IA · Clínica Dental Arganzuela* (datos de ejemplo)\nDe 20 mensajes, 7 necesitan su atención:\n🚨 22:15 · Pablo O.: Tengo un flemón y fiebre, el dolor es muy fuerte. ¿Mañana a primera hora tienen hueco? → _Llamar ya_\n🚨 07:10 · Lucía M.: Llevo toda la noche con un dolor de muelas insoportable, no he podido dormir y tengo la cara… → _Llamar ya_\n🚨 15:20 · Diego C.: Se me ha soltado la corona y me duele mucho al masticar. ¿Me pueden atender urgente? → _Llamar ya_\n🚨 08:41 · Andrés G.: [audio transcrito] Mi hijo se ha caído en el colegio y se le ha roto un diente de delante… → _Llamar ya_\n🚨 11:25 · Sergio A.: Me sacaron la muela del juicio ayer y sigue sangrando mucho, no para. ¿Es normal? → _Llamar ya_\n😠 09:48 · Raúl D.: Me pusieron un empaste la semana pasada y se me ha caído. Estoy bastante molesto, nadie me ha… → _Responder hoy_\n📅 09:02 · Marta L.: Tengo cita mañana a las 10 y no puedo ir, ¿la podemos cambiar al viernes? Hoy mismo si puede… → _Confirmar hoy_\n✅ Los otros 13 (consultas, citas sin prisa, proveedores, saludos y spam) quedaron atendidos o anotados para recepción."}, "labels": {"emergencia": ["🚨", "Emergencia", "Emergency", "Llamar ya", "Call now"], "reclamo": ["😠", "Reclamo", "Complaint", "Responder hoy", "Reply today"], "pedido_grande": ["📦", "Pedido grande con fecha", "Large order with date", "Confirmar hoy", "Confirm today"], "proveedor": ["🚚", "Proveedor", "Supplier", "Revisar", "Review"], "consulta": ["❓", "Consulta (precio/stock/horario)", "Question (price/stock/hours)", "Lo contesta el bot", "Bot answers"], "info": ["💬", "Informativo / saludo", "Info / greeting", "Nada", "None"], "cita": ["📅", "Cita (primera visita / cambio / cancelación)", "Appointment", "Confirmar hoy", "Confirm today"], "spam": ["🗑️", "Spam", "Spam", "Ignorado", "Ignored"]}};
+const qs = new URLSearchParams(location.search);
+let L = qs.get("lang") || D.defaultLang;
+if (qs.get("video")) document.body.classList.add("video");
+if (qs.has("step")) document.body.classList.add("still");
+const t = k => (D.ui[k] && (D.ui[k][L] || D.ui[k].es)) || "";
+const tx = o => o[L] || o.es;
+const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])).replace(/\*(.+?)\*/g,"<b>$1</b>").replace(/(\s)_([^_\n]+)_(?=\s|$)/g,"$1<i>$2</i>");
+const $ = id => document.getElementById(id);
+let timers = [], step = 0;
+
+function paintUI(){
+  document.documentElement.lang = L;
+  document.querySelectorAll("[data-i]").forEach(el => el.textContent = t(el.dataset.i));
+  document.title = t("title");
+  $("rules").innerHTML = (D.ui.rules[L]||D.ui.rules.es).map(r=>"<li>"+r+"</li>").join("");
+  if (D.bilingual){ $("lang").hidden = false; $("lang").querySelectorAll("button").forEach(b=>b.classList.toggle("on", b.dataset.l===L)); }
+  renderInbox();
+}
+function bubble(ev){
+  const m = $("msgs"), f = $("feed");
+  if (ev.t.startsWith("owner")) {
+    const e = f.querySelector(".empty"); if (e) e.remove();
+    const c = document.createElement("div");
+    c.className = "card " + (ev.t==="owner_alerta"?"alerta":ev.t==="owner_llamada"?"llamada":"");
+    c.innerHTML = esc(tx(ev)); f.prepend(c); return;
+  }
+  const b = document.createElement("div"); b.className = "b " + ev.t;
+  if (ev.t==="img") b.innerHTML = '<div class="ph">📷</div><small>'+esc(tx(ev))+'</small>';
+  else b.innerHTML = (ev.t==="bot"?'<span class="lb">🤖 '+t("botLabel")+'</span>':"") + esc(tx(ev));
+  m.appendChild(b); m.scrollTop = m.scrollHeight;
+}
+function reset(){ timers.forEach(clearTimeout); timers=[]; step=0; $("msgs").innerHTML=""; $("feed").innerHTML='<div class="empty">'+t("empty")+'</div>'; }
+function play(fast){
+  reset();
+  const n = qs.has("step") ? +qs.get("step") : (fast ? D.chat.length : 0);
+  for (; step < n && step < D.chat.length; step++) bubble(D.chat[step]);
+  $("msgs").scrollTop = 1e6;
+  if (qs.has("step") || fast) return;
+  let acc = 400;
+  for (let i = step; i < D.chat.length; i++){
+    const ev = D.chat[i];
+    const wait = ev.t==="bot" ? 1300 : ev.t==="sys" ? 700 : 1000;
+    if (ev.t==="bot") timers.push(setTimeout(()=>{const ty=document.createElement("div");ty.className="typing";ty.id="ty";ty.textContent="•••";$("msgs").appendChild(ty);$("msgs").scrollTop=1e6;}, acc));
+    acc += wait;
+    timers.push(setTimeout(()=>{const ty=$("ty"); if(ty) ty.remove(); bubble(ev); step=i+1;}, acc));
+  }
+}
+function quick(kind){
+  bubble({t:"cli", es:t(kind)});
+  timers.push(setTimeout(()=>{ bubble({t:"bot", es:t(kind+"Reply")}); bubble({t:"owner_llamada", es:t(kind+"Owner")}); }, 700));
+}
+function renderInbox(){
+  const R = D.results; let u=0;
+  $("inbox").innerHTML = R.map(r=>{ if(r.urgente) u++;
+    const res = L==="en" && r.en ? r.en : (r.texto || r.es);
+    return `<div class="row ${r.urgente?"":"filt"}"><div class="ic">${D.labels[r.categoria][0]}</div><div class="bd">
+     <div class="tp"><b>${r.de}</b><span>${r.hora} <span class="pill ${r.urgente?"u":"f"}">${r.urgente?t("pillU"):t("pillF")}</span></span></div>
+     <div class="tx">${r.tipo==="audio"?"🎙️ ":""}${esc(res)}</div>
+     <div class="mt">${t("cat")}: ${D.labels[r.categoria][L==="en"?2:1]} · ${t("score")}: ${r.puntaje} · ${esc(r.motivo)}</div></div></div>`}).join("");
+  $("sT").textContent=R.length; $("sU").textContent=u; $("sF").textContent=R.length-u;
+  $("aviso").innerHTML = esc(D.aviso[L] || D.aviso.es);
+}
+$("replay").onclick = ()=>{ qs.delete("step"); play(false); };
+$("skip").onclick = ()=>{ qs.delete("step"); play(true); };
+$("qCall").onclick = ()=>quick("call");
+$("qHuman").onclick = ()=>quick("human");
+$("why").onclick = ()=>$("inboxPanel").classList.toggle("showwhy");
+$("lang").querySelectorAll("button").forEach(b=>b.onclick=()=>{ L=b.dataset.l; paintUI(); play(true); });
+paintUI(); play(false);
+</script>
+</body>
+</html>
